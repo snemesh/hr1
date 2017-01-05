@@ -54,13 +54,24 @@
 
 
 
-<!-- jQuery -->
-<!-- <script src="{{ asset("js/jquery.min.js") }}"></script> -->
-<script src={{ asset('gentelella/vendors/jquery/dist/jquery.min.js') }}></script>
 
+
+
+
+
+
+
+
+
+<!-- jQuery -->
+{{--<script src={{ asset('gentelella/vendors/jquery/dist/jquery.min.js') }}></script>--}}
+{{--<script src={!! asset('js/jquery.min.js') !!}></script>--}}
 <!-- Bootstrap -->
 
-<script src={{ asset('gentelella/vendors/bootstrap/dist/js/bootstrap.min.js') }}></script>
+{{--<script src={{ asset('gentelella/vendors/bootstrap/dist/js/bootstrap.min.js') }}></script>--}}
+{{--<script src={!! asset('js/bootstrap.min.js') !!}></script>--}}
+
+
 
 
 <!-- FastClick -->
@@ -87,8 +98,12 @@
 <script src={!! asset('gentelella/vendors/pdfmake/build/pdfmake.min.js') !!}></script>
 <script src={!! asset('gentelella/vendors/pdfmake/build/vfs_fonts.js') !!}></script>
 
+{{--<script src={!! asset('gentelella/build/js/custom.min.js') !!}></script>--}}
 
-<script src={!! asset('gentelella/build/js/custom.min.js') !!}></script>
+
+
+
+
 
 <!-- $('#datatable-buttons').dataTable( {
 "pageLength": 15
