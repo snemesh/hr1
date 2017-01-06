@@ -38,8 +38,10 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'position_id' => $getPosition->id,
         'rate' => round($getSalary/172,2),
         'hired' =>$faker->date("Y-m-d H:i:s"),
+        'fired' =>$faker->date("Y-m-d H:i:s"),
         'updated' =>$faker->date("Y-m-d H:i:s"),
         'avatar' =>'img/default.png',
         'comments' => $faker->text(200),
+        'nullable' => 0,
     ];
 });

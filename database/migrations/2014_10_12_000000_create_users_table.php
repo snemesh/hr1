@@ -21,11 +21,13 @@ class CreateUsersTable extends Migration
             $table->double('salary')->nullable();
             $table->double('rate')->nullable();
             $table->dateTime('hired')->nullable();
+            $table->dateTime('fired')->nullable();
             $table->dateTime('updated')->nullable();
             $table->string('email')->unique();
             $table->string('password');
             $table->string('avatar')->nullable();
             $table->string('comments')->nullable();
+            $table->boolean('enable')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

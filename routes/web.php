@@ -33,3 +33,6 @@ Route::post('upload', ['as'=>'uploading', 'uses'=>'ProfileController@upload']);
 Route::post('saveuser', ['as'=>'saveuserdata', 'uses'=>'ProfileController@saveuserdata']);
 Route::post('saveusergrouporid', ['as'=>'saveusergrouporid', 'uses'=>'ProfileController@SaveUserGroupOrPosition']);
 
+Route::post('newsalary', ['as'=>'changesalary', 'uses'=>'ProfileController@NewSalary']);
+Route::post('userstatus', ['as'=>'userstatus', 'uses'=>'ProfileController@UserStatus']);
+

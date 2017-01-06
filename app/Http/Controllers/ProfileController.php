@@ -84,7 +84,15 @@ class ProfileController extends Controller
 
     }
 
+    public function NewSalary(){
 
+        return back();
+    }
+
+    public function UserStatus(){
+
+        return back();
+    }
 
     public function index()
     {
@@ -217,6 +225,8 @@ class ProfileController extends Controller
         if($updatedUser->comments!=$request->comments) $updatedUser->comments = $request->comments;
         if($updatedUser->email!=$request->email) $updatedUser->email = $request->email;
         if($updatedUser->name!=$request->name) $updatedUser->name = $request->name;
+        if($updatedUser->fired!=$request->fired) $updatedUser->fired = $request->fired;
+
 
         $updatedUser->save();                            //сохраняем
 

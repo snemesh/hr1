@@ -51,6 +51,25 @@
                             </li>
                         </ul>
                     </div>
+
+
+                    <div class="form-group">
+                        {!! Form::open(['route' => 'userstatus']) !!}
+                        <br><input name="resivedid" hidden="hidden" value={{$user->id}}>
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+                            <div class="btn-group" data-toggle="buttons">
+                                <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+                                    <input type="radio" name="enable1" value="1"> Enabled
+                                </label>
+                                <label class="btn btn-danger" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+                                    <input type="radio" name="enable0" value="0"> Disabled
+                                </label>
+                            </div>
+                        </div>
+                        {!! Form::token() . Form::close() !!}
+                    </div>
+
                 </div>
 
                 <div align="center" class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
@@ -106,9 +125,22 @@
                                             <div class="form-group">
                                                 <label for="middle-name" class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-12">Hired date</label>
                                                 <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                                                    {!! Form::text('hired',$user->hired,['placeholder' => 'Date of thr hire', 'class'=>'form-control', 'disabled'=>"disabled" ]) !!}
+                                                    {!! Form::text('hired',$user->hired,['placeholder' => 'Date of thr hire', 'class'=>'form-control' ]) !!}
                                                 </div>
                                             </div>
+                                            <div class="form-group">
+                                                <label for="middle-name" class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-12">Fired date</label>
+                                                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                                                    {!! Form::text('hired',$user->fired,['placeholder' => 'Date of thr hire', 'class'=>'form-control' ]) !!}
+                                                </div>
+                                            </div>
+
+
+
+
+
+
+
                                             <div class="form-group">
                                                 <label for="middle-name" class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-12">Comments</label>
                                                 <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">

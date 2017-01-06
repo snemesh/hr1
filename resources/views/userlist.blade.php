@@ -112,6 +112,12 @@
 
 <script>
     $(document).ready(function() {
+//        $('#set1').click(function () {
+//            $('#datatable').attr('id', 'datatable-buttons');
+//            $("#datatable-buttons").load();
+//        });
+
+
         var handleDataTableButtons = function() {
             if ($("#datatable-buttons").length) {
                 $("#datatable-buttons").DataTable({

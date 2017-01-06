@@ -28,7 +28,7 @@
                         <td>{!! $listOfPositions[$user->position_id] !!}</td>
                         <td>{!! $listOfGroup[$user->group_id] !!}</td>
                         <td>{!! $user->updated_at !!}</td>
-                        <td class=" last"><a href="/profile/{!! $user->id !!}"><i class="fa fa-pencil"> View</i></a></td>
+                        <td class=" last"><a href="/profile/{!! $user->id !!}"><i class="fa fa-pencil">  View</i></a></td>
                     </tr>
                 @endforeach
 
