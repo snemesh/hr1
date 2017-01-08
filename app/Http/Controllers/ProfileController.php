@@ -19,12 +19,15 @@ class ProfileController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    protected $request;
 
-    public function __construct()
+    public function __construct(Request $request)
     {
         $this->middleware('auth');
         //$this->middleware('log', ['only' => ['fooAction', 'barAction']]);
         //$this->middleware('subscribed', ['except' => ['fooAction', 'barAction']]);
+        $this->request = $request;
+
     }
 
 
