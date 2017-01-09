@@ -5,7 +5,8 @@
             <div class="panel-heading"><h3 class="panel-title" align="center">Salary information</h3></div>
             <div class="panel-body">
                 <div class="form-horizontal form-label-left">
-                    {!! Form::open(['action' => 'ProfileController@showProfile','userid'=>$user->id]) !!}
+                    {{--{!! Form::open(['action' => 'ProfileController@saveSalary']) !!}--}}
+                    {!! Form::open(['route' => 'sevesalary']) !!}
                     <div class="row">
                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                             <img class="img-responsive avatar-view" src={!! (null!==$user->avatar) ? asset($user->avatar) : asset('img/default.png') !!} alt="Avatar" title="Change the avatar">

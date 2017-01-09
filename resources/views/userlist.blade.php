@@ -57,12 +57,6 @@
 
 
 
-
-
-
-
-
-
 <!-- jQuery -->
 {{--<script src={{ asset('gentelella/vendors/jquery/dist/jquery.min.js') }}></script>--}}
 {{--<script src={!! asset('js/jquery.min.js') !!}></script>--}}

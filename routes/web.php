@@ -21,15 +21,24 @@ Route::get('/home', 'ProfileController@showProfile');
 Route::post('/home', 'ProfileController@saveProfile');
 
 Route::get('/profile', 'ProfileController@showProfile');
+Route::post('/profile', 'ProfileController@showProfile');
+
+Route::post('/profile', ['as'=>'sevesalary', 'uses'=>'ProfileController@saveSalary']);
+
+
+
 //Route::get('/profile/{id}', 'ProfileController@showProfile');
 
-Route::get('/profile/{id}', 'ProfileController@showUserProfile')->where('id', '[0-9]+');;
+//Route::get('/profile/{id}', 'ProfileController@showUserProfile')->where('id', '[0-9]+');;
 
 
 Route::get('/userlist', 'UserListController@showUsers');
 
-//Route::get('upload/{userid}', ['as'=>'uploading', 'uses'=>'ProfileController@getResizeImage']);
-Route::post('upload', ['as'=>'uploading', 'uses'=>'ProfileController@upload']);
+
+
+
+Route::post('/upload', 'ProfileController@upload');
+
 
 //
 //Route::post('saveuser', ['as'=>'saveuserdata', 'uses'=>'ProfileController@saveuserdata']);

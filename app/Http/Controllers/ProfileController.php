@@ -132,13 +132,14 @@ class ProfileController extends Controller
     }
 
 
-    public function upload(Request $request)
+    public function upload (Request $request)
     {
         $user = User::find($request->resivedid);
         $this->validate($request,[
-            'userid'=> 'required',
+            'resivedid' => 'int',
             'photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:1024',
         ]);
+
         $photo = $request->file('photo');
         $userid = $request->userid;
 
@@ -153,26 +154,78 @@ class ProfileController extends Controller
 
         $destinationPath = public_path('/normal_images');
         $photo->move($destinationPath, $imagename);
-        echo $imagename;
         $updatedUser = User::find($request->resivedid);;
         $updatedUser->avatar = '/thumbnail_images/'.$imagename;
         $updatedUser->save();
-        $test="lll";
+
+        $listOfPositions = Position::query()->pluck('positionname','id')->toArray();
+        $listOfGroup = Group::query()->pluck('groupname','id')->toArray();
 
 
 
+        $user = Auth::user();
 
-        return back()
-            ->with('success','Image Upload successful')
-            ->with('imagename',$imagename)
-            ->with('user',$user)
-            ->with('$avatar','avatar')
-            ->with('userid',$userid)
-            ->with($test,'$test');
+        if ($user->enable==0){
+
+            session()->set('enabled.bt1.class','btn btn-success');
+            session()->set('enabled.bt2.class','btn btn-default');
+
+            session()->set('enabled.bt1.value','0');
+            session()->set('enabled.bt2.value','1');
+
+
+            $bt1['class'] = session()->get('enabled.bt1.class','btn btn-success');
+            $bt2['class'] = session()->get('enabled.bt2.class','btn btn-default');
+
+            $bt1['value'] = session()->get('enabled.bt1.value','0');
+            $bt2['value'] = session()->get('enabled.bt2.value','1');
+
+
+        } else{
+
+            session()->set('enabled.bt1.class','btn btn-default');
+            session()->set('enabled.bt2.class','btn btn-danger');
+
+            session()->set('enabled.bt1.value','1');
+            session()->set('enabled.bt2.value','0');
+
+            $bt1['class'] = session()->get('enabled.bt1.class','btn btn-default');
+            $bt2['class'] = session()->get('enabled.bt2.class','btn btn-danger');
+
+            $bt1['value'] = session()->get('enabled.bt1.value','1');
+            $bt2['value'] = session()->get('enabled.bt2.value','0');
+
+
+        }
+
+        if($request->isMethod('post')){
+            session()->flash('activetab1.tab','active');
+            session()->flash('activetab2.tab','');
+            session()->flash('activetab3.tab','');
+
+            session()->flash('activetab1.page','tab-pane fade active in');
+            session()->flash('activetab2.page','tab-pane fade');
+            session()->flash('activetab3.page','tab-pane fade');
+        }
+
+
+        return back();
+//        return view('profile1')
+//            ->with('user',$updatedUser)
+//            ->with('$avatar','avatar')
+//            ->with('listOfPositions',$listOfPositions)
+//            ->with('listOfGroup',$listOfGroup)
+//            ->with('bt1' , $bt1)
+//            ->with('bt2' , $bt2);
     }
 
     public function showProfile (Request $request)
     {
+        if($request->isMethod('post')){
+
+
+        }
+
 
         $user = Auth::user();
 
@@ -210,14 +263,13 @@ class ProfileController extends Controller
 
         }
 
-
         $listOfPositions = Position::query()->pluck('positionname','id')->toArray();
         $listOfGroup = Group::query()->pluck('groupname','id')->toArray();
 
 
         return view('profile1')->with('bt1' , $bt1)
-            ->with('bt2' , $bt2)
-            ->with('user' , $user)
+            ->with('bt2', $bt2)
+            ->with('user', $user)
             ->with('listOfPositions', $listOfPositions)
             ->with('listOfGroup' , $listOfGroup);
     }
@@ -283,10 +335,25 @@ class ProfileController extends Controller
 
         }
 
+
+        if($request->isMethod('post')){
+            session()->flash('activetab1.tab','active');
+            session()->flash('activetab2.tab','');
+            session()->flash('activetab3.tab','');
+
+            session()->flash('activetab1.page','tab-pane fade active in');
+            session()->flash('activetab2.page','tab-pane fade');
+            session()->flash('activetab3.page','tab-pane fade');
+        }
+
+
+
+
         $listOfPositions = Position::query()->pluck('positionname','id')->toArray();
         $listOfGroup = Group::query()->pluck('groupname','id')->toArray();
 
 
+        dump(session()->all());
         return back()->with('bt1' , $bt1)
                                 ->with('bt2' , $bt2)
                                 ->with('user' , $user)
@@ -372,7 +439,39 @@ class ProfileController extends Controller
     }
 
 
+    public function saveSalary(Request $request){
 
+        if($request->isMethod('post')){
+            $this->validate($request,[
+                'resivedid'=> 'int',
+                'name'=> 'string|max:50',
+                'salary'=> 'numeric',
+                'comments'=> 'required|string|max:100',
+            ]);
+        }
+
+        echo "name = ". $request->name."<br>";
+        echo "salary = ". $request->salary."<br>";
+        echo "comments = ". $request->comments."<br>";
+
+        if($request->isMethod('post')) {
+            session()->flash('activetab1.tab', '');
+            session()->flash('activetab2.tab', 'active');
+            session()->flash('activetab3.tab', '');
+
+            session()->flash('activetab1.page', 'tab-pane fade');
+            session()->flash('activetab2.page', 'tab-pane fade active in');
+            session()->flash('activetab3.page', 'tab-pane fade');
+        }
+
+
+
+
+
+        return back();
+
+
+    }
 
     /**
      * Show the form for creating a new resource.
