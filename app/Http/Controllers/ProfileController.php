@@ -11,7 +11,6 @@ use Intervention\Image\Facades\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-
 class ProfileController extends Controller
 {
     /**
@@ -31,18 +30,18 @@ class ProfileController extends Controller
     }
 
 
-    public function showProfile(Request $request)
-    {
-        //
-
-        $user = Auth::user();
-        $listOfPositions = Position::query()->pluck('positionname','id')->toArray();
-        $listOfGroup = Group::query()->pluck('groupname','id')->toArray();
-//        var_dump($user);
-//        var_dump($listOfPositions);
-
-        return view('profile',['user'=>$user, 'listOfGroup'=>$listOfGroup, 'listOfPositions'=>$listOfPositions]);
-    }
+//    public function showProfile(Request $request)
+//    {
+//        //
+//
+//        $user = Auth::user();
+//        $listOfPositions = Position::query()->pluck('positionname','id')->toArray();
+//        $listOfGroup = Group::query()->pluck('groupname','id')->toArray();
+////        var_dump($user);
+////        var_dump($listOfPositions);
+//
+//        return view('profile',['user'=>$user, 'listOfGroup'=>$listOfGroup, 'listOfPositions'=>$listOfPositions]);
+//    }
 
 
     public function showUserProfile(Request $request)
@@ -158,6 +157,7 @@ class ProfileController extends Controller
         $updatedUser = User::find($request->resivedid);;
         $updatedUser->avatar = '/thumbnail_images/'.$imagename;
         $updatedUser->save();
+        $test="lll";
 
 
 
@@ -167,27 +167,157 @@ class ProfileController extends Controller
             ->with('imagename',$imagename)
             ->with('user',$user)
             ->with('$avatar','avatar')
-            ->with('userid',$userid);
-
-//        return back()
-//            ->with('success','Image Upload successful')
-//            ->with('imagename',$imagename);
-
-
+            ->with('userid',$userid)
+            ->with($test,'$test');
     }
+
+    public function showProfile (Request $request)
+    {
+
+        $user = Auth::user();
+
+
+        if ($user->enable==0){
+
+            session()->set('enabled.bt1.class','btn btn-success');
+            session()->set('enabled.bt2.class','btn btn-default');
+
+            session()->set('enabled.bt1.value','0');
+            session()->set('enabled.bt2.value','1');
+
+
+            $bt1['class'] = session()->get('enabled.bt1.class','btn btn-success');
+            $bt2['class'] = session()->get('enabled.bt2.class','btn btn-default');
+
+            $bt1['value'] = session()->get('enabled.bt1.value','0');
+            $bt2['value'] = session()->get('enabled.bt2.value','1');
+
+
+        } else{
+
+            session()->set('enabled.bt1.class','btn btn-default');
+            session()->set('enabled.bt2.class','btn btn-danger');
+
+            session()->set('enabled.bt1.value','1');
+            session()->set('enabled.bt2.value','0');
+
+            $bt1['class'] = session()->get('enabled.bt1.class','btn btn-default');
+            $bt2['class'] = session()->get('enabled.bt2.class','btn btn-danger');
+
+            $bt1['value'] = session()->get('enabled.bt1.value','1');
+            $bt2['value'] = session()->get('enabled.bt2.value','0');
+
+
+        }
+
+
+        $listOfPositions = Position::query()->pluck('positionname','id')->toArray();
+        $listOfGroup = Group::query()->pluck('groupname','id')->toArray();
+
+
+        return view('profile1')->with('bt1' , $bt1)
+            ->with('bt2' , $bt2)
+            ->with('user' , $user)
+            ->with('listOfPositions', $listOfPositions)
+            ->with('listOfGroup' , $listOfGroup);
+    }
+
+
+
+    public function saveProfile (Request $request)
+    {
+        $numbersOfDaysInMonth = 173;
+
+            $this->validate($request,[
+                'resivedid'=> 'int',
+                'name'=> 'string|max:50',
+                'email'=> 'email',
+                'created'=> 'date',
+                'hired'=> 'date',
+                'fired'=> 'date',
+                'enable0'=> 'boolean',
+                'enable1'=> 'boolean',
+                'comments'=> 'string|max:100',
+
+            ]);
+
+        if($request->has('resivedid')) {
+            $user = User::find($request->resivedid);
+        } else{
+            $user = Auth::user();;
+
+        }
+
+        $updatedUser = User::find($user->id); //находим запись
+
+        if($updatedUser->comments!=$request->comments) $updatedUser->comments = $request->comments;
+        if($updatedUser->email!=$request->email) $updatedUser->email = $request->email;
+        if($updatedUser->name!=$request->name) $updatedUser->name = $request->name;
+        if($updatedUser->fired!=$request->fired) $updatedUser->fired = $request->fired;
+        if($updatedUser->hired!=$request->hired) $updatedUser->hired = $request->hired;
+
+
+        if($request->enable0=='1') $updatedUser->enable = 0;
+        if($request->enable1=='1') $updatedUser->enable = 1;
+
+
+        $updatedUser->save();                            //сохраняем
+
+
+        if ($user->enable==0) {
+
+            $bt1['class'] = $request->session()->get('enabled.bt1.class', 'btn btn-success');
+            $bt2['class'] = $request->session()->get('enabled.bt2.class', 'btn btn-default');
+
+            $bt1['value'] = $request->session()->get('enabled.bt1.value', '0');
+            $bt2['value'] = $request->session()->get('enabled.bt2.value', '1');
+        }
+        if ($user->enable==1){
+
+            $bt1['class'] = $request->session()->get('enabled.bt1.class','btn btn-default');
+            $bt2['class'] = $request->session()->get('enabled.bt2.class','btn btn-danger');
+
+            $bt1['value'] = $request->session()->get('enabled.bt1.value','1');
+            $bt2['value'] = $request->session()->get('enabled.bt2.value','0');
+
+
+        }
+
+        $listOfPositions = Position::query()->pluck('positionname','id')->toArray();
+        $listOfGroup = Group::query()->pluck('groupname','id')->toArray();
+
+
+        return back()->with('bt1' , $bt1)
+                                ->with('bt2' , $bt2)
+                                ->with('user' , $user)
+                                ->with('listOfPositions', $listOfPositions)
+                                ->with('listOfGroup' , $listOfGroup);
+    }
+
 
     /**
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function saveuserdata(Request $request){
-        $amountOfName = 173;
-        $this->validate($request,[
-            'salary'=> 'required',
-            'resivedid'=> 'required',
+    public function saveuserddata(Request $request){
+        $numbersOfDaysInMonth = 173;
+        if($request->isMethod('post')){
+            $this->validate($request,[
+                'resivedid'=> '',
+                'name'=> '',
+                'email'=> '',
+                'created'=> '',
+                'hired'=> '',
+                'fired'=> '',
+                'enable0'=> '',
+                'enable1'=> '',
+                'comments'=> 'required|string|max:100',
 
-            //TODO сделать валидацию коментария
-        ]);
+
+                //TODO сделать валидацию коментария
+            ]);
+        }
+
 //        echo 'email = '. $request->email;
 //        echo "<br>";
 //        echo 'name = '.$request->name;
@@ -199,9 +329,9 @@ class ProfileController extends Controller
 //        echo 'resivedid = '.$request->resivedid;
 //        echo "<br>";
 
-        //TODO Сделать валидацию введеных значений
-        //TODO Возможно стоит вынести в отдельную функцию
-        //echo $request->resivedid;
+//        TODO Сделать валидацию введеных значений
+//        TODO Возможно стоит вынести в отдельную функцию
+//        echo $request->resivedid;
 
         $userId = User::find($request->resivedid);
 
@@ -212,7 +342,7 @@ class ProfileController extends Controller
         //присваеваем новое значение salary из формы
         if($updatedUser->salary!=$request->salary) {
             $updatedUser->salary = $request->salary;
-            $userRate =  $request->salary/$amountOfName;  //call a rate
+            $userRate =  $request->salary/$numbersOfDaysInMonth;  //call a rate
             $updatedUser->rate = round($userRate,2);
             $logedSalary = new Salarylog;                // creating new reccord in the logsalary table
             $logedSalary->user_id = $userId->id;
@@ -222,7 +352,7 @@ class ProfileController extends Controller
             $logedSalary->comments = $request->comments;
             $logedSalary->save(); //saving results
 
-            echo '$updatedUser->salary ='.$updatedUser->salary."<br>";
+//            echo '$updatedUser->salary ='.$updatedUser->salary."<br>";
 
         }
         if($updatedUser->comments!=$request->comments) $updatedUser->comments = $request->comments;

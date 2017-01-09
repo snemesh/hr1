@@ -1,10 +1,8 @@
 <div class="clearfix"></div>
-
-
 <div class="col-md-12 col-sm-12 col-xs-12">
     <div class="x_panel">
         <div class="x_title">
-            <h2><i class="fa fa-bars"></i> Tabs <small>Float right</small></h2>
+            <h2><i class="fa fa-bars"></i> {!! $user->name !!} <small>user id #{!! $user->id !!}</small></h2>
             <ul class="nav navbar-right panel_toolbox">
                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                 </li>
@@ -26,28 +24,30 @@
 
             <div class="" role="tabpanel" data-example-id="togglable-tabs">
                 <ul id="myTab1" class="nav nav-tabs bar_tabs left" role="tablist">
-                    <li role="presentation" class="active"><a href="#tab_content11" id="home-tabb" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">Home</a>
+                    <li role="presentation" class="active"><a href="#tab_home-tb" id="home-tabb" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">Home</a>
                     </li>
-                    <li role="presentation" class=""><a href="#tab_content22" role="tab" id="profile-tabb" data-toggle="tab" aria-controls="profile" aria-expanded="false">Salary</a>
+                    <li role="presentation" class=""><a href="#salary-tb" role="tab" id="profile-tabb" data-toggle="tab" aria-controls="salary" aria-expanded="false">Salary</a>
                     </li>
-                    <li role="presentation" class=""><a href="#tab_content33" role="tab" id="profile-tabb3" data-toggle="tab" aria-controls="profile" aria-expanded="false">Setting</a>
+                    <li role="presentation" class=""><a href="#settings-tb" role="tab" id="profile-tabb3" data-toggle="tab" aria-controls="settings" aria-expanded="false">Setting</a>
                     </li>
                 </ul>
                 <div id="myTabContent2" class="tab-content">
-                    <div role="tabpanel" class="tab-pane fade active in" id="tab_content11" aria-labelledby="home-tab">
+                    <div role="tabpanel" class="tab-pane fade active in" id="tab_home-tb" aria-labelledby="home-tab">
 
                         @include('hrsystem.photo')
 
                         @include('hrsystem.mainprofile')
 
                     </div>
-                    <div role="tabpanel" class="tab-pane fade" id="tab_content22" aria-labelledby="profile-tab">
-                        <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo
-                            booth letterpress, commodo enim craft beer mlkshk aliquip</p>
+                    <div role="tabpanel" class="tab-pane fade" id="salary-tb" aria-labelledby="profile-tab">
+
+                        @include('hrsystem.salary')
+
                     </div>
-                    <div role="tabpanel" class="tab-pane fade" id="tab_content33" aria-labelledby="profile-tab">
-                        <p>xxFood truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo
-                            booth letterpress, commodo enim craft beer mlkshk </p>
+                    <div role="tabpanel" class="tab-pane fade" id="settings-tb" aria-labelledby="profile-tab">
+
+                        @include('hrsystem.setting')
+
                     </div>
                 </div>
             </div>
