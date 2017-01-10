@@ -24,25 +24,25 @@
 
             <div class="" role="tabpanel" data-example-id="togglable-tabs">
                 <ul id="myTab1" class="nav nav-tabs bar_tabs left" role="tablist">
-                    <li role="presentation" class="{!! session()->pull('activetab1.tab','active') !!}"><a href="#tab_home-tb" id="home-tabb" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">Home</a>
+                    <li role="presentation" class="{!! session()->get('activetab1.tab','active') !!}"><a href="#tab_home-tb" id="home-tabb" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">Home</a>
                     </li>
-                    <li role="presentation" class="{!! session()->pull('activetab2.tab','') !!}"><a href="#salary-tb" role="tab" id="salary-tabb" data-toggle="tab" aria-controls="salary" aria-expanded="false">Salary</a>
+                    <li role="presentation" class="{!! session()->get('activetab2.tab','') !!}"><a href="#salary-tb" role="tab" id="salary-tabb" data-toggle="tab" aria-controls="salary" aria-expanded="false">Salary</a>
                     </li>
-                    <li role="presentation" class="{!! session()->pull('activetab3.tab','') !!}"><a href="#settings-tb" role="tab" id="setting-tabb" data-toggle="tab" aria-controls="settings" aria-expanded="false">Setting</a>
+                    <li role="presentation" class="{!! session()->get('activetab3.tab','') !!}"><a href="#settings-tb" role="tab" id="setting-tabb" data-toggle="tab" aria-controls="settings" aria-expanded="false">Setting</a>
                     </li>
                 </ul>
                 <div id="myTabContent2" class="tab-content">
-                    <div role="tabpanel" class="{!! session()->pull('activetab1.page','tab-pane fade active in') !!}" id="tab_home-tb" aria-labelledby="home-tab">
+                    <div role="tabpanel" class="{!! session()->get('activetab1.page','tab-pane fade active in') !!}" id="tab_home-tb" aria-labelledby="home-tab">
 
                         @include('hrsystem.mainprofile')
 
                     </div>
-                    <div role="tabpanel" class="{!! session()->pull('activetab2.page','') !!}" id="salary-tb" aria-labelledby="profile-tab">
+                    <div role="tabpanel" class="{!! session()->get('activetab2.page','tab-pane fade') !!}" id="salary-tb" aria-labelledby="profile-tab">
 
                         @include('hrsystem.salary')
 
                     </div>
-                    <div role="tabpanel" class="{!! session()->pull('activetab3.page','') !!}" id="settings-tb" aria-labelledby="profile-tab">
+                    <div role="tabpanel" class="{!! session()->get('activetab3.page','tab-pane fade') !!}" id="settings-tb" aria-labelledby="profile-tab">
 
                         @include('hrsystem.setting')
 

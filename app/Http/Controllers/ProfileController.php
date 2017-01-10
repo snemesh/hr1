@@ -167,6 +167,7 @@ class ProfileController extends Controller
 
         if ($user->enable==0){
 
+
             session()->set('enabled.bt1.class','btn btn-success');
             session()->set('enabled.bt2.class','btn btn-default');
 
@@ -199,13 +200,20 @@ class ProfileController extends Controller
         }
 
         if($request->isMethod('post')){
-            session()->flash('activetab1.tab','active');
-            session()->flash('activetab2.tab','');
-            session()->flash('activetab3.tab','');
 
-            session()->flash('activetab1.page','tab-pane fade active in');
-            session()->flash('activetab2.page','tab-pane fade');
-            session()->flash('activetab3.page','tab-pane fade');
+//            $request->session()->flush('activetab1.tab');
+//            $request->session()->flush('activetab2.tab');
+//            $request->session()->flush('activetab3.tab');
+
+
+
+            $request->session()->flash('activetab1.tab','active');
+            $request->session()->flash('activetab2.tab','');
+            $request->session()->flash('activetab3.tab','');
+
+            $request->session()->flash('activetab1.page','tab-pane fade active in');
+            $request->session()->flash('activetab2.page','tab-pane fade');
+            $request->session()->flash('activetab3.page','tab-pane fade');
         }
 
 
@@ -221,11 +229,10 @@ class ProfileController extends Controller
 
     public function showProfile (Request $request)
     {
+
         if($request->isMethod('post')){
 
-
         }
-
 
         $user = Auth::user();
 
@@ -337,13 +344,13 @@ class ProfileController extends Controller
 
 
         if($request->isMethod('post')){
-            session()->flash('activetab1.tab','active');
-            session()->flash('activetab2.tab','');
-            session()->flash('activetab3.tab','');
+            $request->session()->flash('activetab1.tab','active');
+            $request->session()->flash('activetab2.tab','');
+            $request->session()->flash('activetab3.tab','');
 
-            session()->flash('activetab1.page','tab-pane fade active in');
-            session()->flash('activetab2.page','tab-pane fade');
-            session()->flash('activetab3.page','tab-pane fade');
+            $request->session()->flash('activetab1.page','tab-pane fade active in');
+            $request->session()->flash('activetab2.page','tab-pane fade');
+            $request->session()->flash('activetab3.page','tab-pane fade');
         }
 
 
@@ -353,12 +360,11 @@ class ProfileController extends Controller
         $listOfGroup = Group::query()->pluck('groupname','id')->toArray();
 
 
-        dump(session()->all());
-        return back()->with('bt1' , $bt1)
-                                ->with('bt2' , $bt2)
-                                ->with('user' , $user)
-                                ->with('listOfPositions', $listOfPositions)
-                                ->with('listOfGroup' , $listOfGroup);
+        return back()->with('bt1', $bt1)
+                     ->with('bt2' , $bt2)
+                     ->with('user' , $user)
+                     ->with('listOfPositions', $listOfPositions)
+                     ->with('listOfGroup' , $listOfGroup);
     }
 
 
@@ -450,18 +456,22 @@ class ProfileController extends Controller
             ]);
         }
 
-        echo "name = ". $request->name."<br>";
-        echo "salary = ". $request->salary."<br>";
-        echo "comments = ". $request->comments."<br>";
+//        echo "name = ". $request->name."<br>";
+//        echo "salary = ". $request->salary."<br>";
+//        echo "comments = ". $request->comments."<br>";
+
+
+
+
 
         if($request->isMethod('post')) {
-            session()->flash('activetab1.tab', '');
-            session()->flash('activetab2.tab', 'active');
-            session()->flash('activetab3.tab', '');
+            $request->session()->flash('activetab1.tab', '');
+            $request->session()->flash('activetab2.tab', 'active');
+            $request->session()->flash('activetab3.tab', '');
 
-            session()->flash('activetab1.page', 'tab-pane fade');
-            session()->flash('activetab2.page', 'tab-pane fade active in');
-            session()->flash('activetab3.page', 'tab-pane fade');
+            $request->session()->flash('activetab1.page', 'tab-pane fade');
+            $request->session()->flash('activetab2.page', 'tab-pane fade active in');
+            $request->session()->flash('activetab3.page', 'tab-pane fade');
         }
 
 
