@@ -27,12 +27,24 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function group()
+    public function usergroup()
     {
-        return $this->hasOne('App\Group');
+        return $this->hasOne('App\Group','id','group_id');
     }
-    public function position()
+    public function userposition()
     {
-        return $this->hasOne('App\Position');
+        return $this->hasOne('App\Position','id','position_id');
     }
+
+    public function salarylog(){
+
+        return $this->hasMany('App\Salarylog','user_id','id');
+    }
+
+//    public function salarylogname(){
+//
+//        return $this->hasMany('App\Salarylog','init','name');
+//    }
+
+
 }

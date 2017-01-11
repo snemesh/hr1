@@ -230,11 +230,9 @@ class ProfileController extends Controller
     public function showProfile (Request $request)
     {
 
-        if($request->isMethod('post')){
+        $id = $request->id;
+        ($id==null) ? $user = Auth::user(): $user = User::find($request->id);
 
-        }
-
-        $user = Auth::user();
 
 
         if ($user->enable==0){
@@ -274,18 +272,36 @@ class ProfileController extends Controller
         $listOfGroup = Group::query()->pluck('groupname','id')->toArray();
 
 
+        //$salarycomment=User::find($user->id)->salarylog()->where('salary','=', $user->salary);
+        //$salarycomments=User::find(97);//->salarylog();
+//        $myuser=User::find(97);
+//        $logcomment = $myuser->salarylog;
+//        $logeduser = Salarylog::find(1);
+//        $res = $logeduser->user->salary;
+
+
+        $curUser=User::find($user->id);
+        $salarycomment = $curUser->salarylog->where('salary', $user->salary)->pluck('comments')->last();
+
+        //dump($salarycomment);
+        //$userPosition = $curUser->userposition->positionname;
+        //$userGroup = $curUser->usergroup->groupname;
+        //dump($userPosition);
+
+
         return view('profile1')->with('bt1' , $bt1)
             ->with('bt2', $bt2)
             ->with('user', $user)
             ->with('listOfPositions', $listOfPositions)
-            ->with('listOfGroup' , $listOfGroup);
+            ->with('listOfGroup' , $listOfGroup)
+            ->with('salarycomment',$salarycomment);
     }
 
 
 
     public function saveProfile (Request $request)
     {
-        $numbersOfDaysInMonth = 173;
+
 
             $this->validate($request,[
                 'resivedid'=> 'int',
@@ -446,13 +462,13 @@ class ProfileController extends Controller
 
 
     public function saveSalary(Request $request){
-
+        $numbersOfDaysInMonth = 173;
         if($request->isMethod('post')){
             $this->validate($request,[
                 'resivedid'=> 'int',
                 'name'=> 'string|max:50',
                 'salary'=> 'numeric',
-                'comments'=> 'required|string|max:100',
+                'comments'=> 'required_if:salary,numeric|string|max:100',
             ]);
         }
 
@@ -460,9 +476,31 @@ class ProfileController extends Controller
 //        echo "salary = ". $request->salary."<br>";
 //        echo "comments = ". $request->comments."<br>";
 
+        $updatedUser = User::find($request->resivedid); //находим запись
 
 
+        //присваеваем новое значение salary из формы
+        if($updatedUser->salary!=$request->salary) {
+            $updatedUser->salary = $request->salary;
+            $userRate =  $request->salary/$numbersOfDaysInMonth;  //call a rate
+            $updatedUser->rate = round($userRate,2);
+            $logedSalary = new Salarylog;                // creating new reccord in the logsalary table
+            $logedSalary->user_id = $request->resivedid;
+            $logedSalary->salary = $request->salary;
+            $initUser = Auth::user();
+            $logedSalary->init = $initUser->email;
+            $logedSalary->comments = $request->comments;
+            $logedSalary->save(); //saving results
 
+//            echo '$updatedUser->salary ='.$updatedUser->salary."<br>";
+
+        }
+        //if($updatedUser->comments!=$request->comments) $updatedUser->comments = $request->comments;
+        //if($updatedUser->email!=$request->email) $updatedUser->email = $request->email;
+        if($updatedUser->name!=$request->name) $updatedUser->name = $request->name;
+        //if($updatedUser->fired!=$request->fired) $updatedUser->fired = $request->fired;
+
+        $updatedUser->save();                            //сохраняем
 
         if($request->isMethod('post')) {
             $request->session()->flash('activetab1.tab', '');
@@ -474,14 +512,49 @@ class ProfileController extends Controller
             $request->session()->flash('activetab3.page', 'tab-pane fade');
         }
 
+        return back();
+    }
+
+    public function saveSettings(Request $request){
+
+        if($request->isMethod('post')){
+            $this->validate($request,[
+                'resivedid'=> 'int',
+                'position'=> 'numeric',
+                'group'=> 'numeric',
+            ]);
+        }
+
+        $updatedUser = User::find($request->resivedid); //находим запись
+        //dump($updatedUser->position_id);
+        //dump($request->position);
 
 
 
+//        //присваеваем новое значение salary из формы
+        if($updatedUser->position_id!=$request->position) {
+            $updatedUser->position_id = $request->position;
+        }
+        if($updatedUser->group_id!=$request->group) {
+            $updatedUser->group_id = $request->group;
+        }
+
+        $updatedUser->save();                            //сохраняем
+
+        if($request->isMethod('post')) {
+            $request->session()->flash('activetab1.tab', '');
+            $request->session()->flash('activetab2.tab', '');
+            $request->session()->flash('activetab3.tab', 'active');
+
+            $request->session()->flash('activetab1.page', 'tab-pane fade');
+            $request->session()->flash('activetab2.page', 'tab-pane fade');
+            $request->session()->flash('activetab3.page', 'tab-pane fade active in');
+        }
 
         return back();
-
-
     }
+
+
 
     /**
      * Show the form for creating a new resource.

@@ -11,6 +11,11 @@
 |
 */
 
+//DB::listen(function($query) {
+//
+//    var_dump($query->sql, $query->bindings);
+//});
+
 Auth::routes();
 
 Route::get('/logout', 'Auth\LoginController@logout');
@@ -23,13 +28,16 @@ Route::post('/home', 'ProfileController@saveProfile');
 Route::get('/profile', 'ProfileController@showProfile');
 Route::post('/profile', 'ProfileController@showProfile');
 
-Route::post('/profile', ['as'=>'sevesalary', 'uses'=>'ProfileController@saveSalary']);
+Route::post('savesalary', ['as'=>'savesalary', 'uses'=>'ProfileController@saveSalary']);
+
+
+Route::post('savesettings', ['as'=>'savesettings', 'uses'=>'ProfileController@saveSettings']);
 
 
 
 //Route::get('/profile/{id}', 'ProfileController@showProfile');
 
-//Route::get('/profile/{id}', 'ProfileController@showUserProfile')->where('id', '[0-9]+');;
+Route::get('/profile/{id}', 'ProfileController@showProfile')->where('id', '[0-9]+');;
 
 
 Route::get('/userlist', 'UserListController@showUsers');
@@ -38,6 +46,8 @@ Route::get('/userlist', 'UserListController@showUsers');
 
 
 Route::post('/upload', 'ProfileController@upload');
+
+
 
 
 //

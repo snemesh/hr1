@@ -5,24 +5,23 @@
             <div class="panel-heading"><h3 class="panel-title" align="center">Salary information</h3></div>
             <div class="panel-body">
                 <div class="form-horizontal form-label-left">
-                    {!! Form::open(['action' => 'ProfileController@showProfile']) !!}
+                    {!! Form::open(['route' => 'savesettings']) !!}
                     <div class="row">
-                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                        <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
                             <img class="img-responsive avatar-view" src={!! (null!==$user->avatar) ? asset($user->avatar) : asset('img/default.png') !!} alt="Avatar" title="Change the avatar">
                         </div>
-                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                        <div class="col-lg-9 col-md-9 col-sm-8 col-xs-12">
                             <div class="form-group">
-                                <label class="control-label col-lg-2 col-md-2 col-sm-2 col-xs-2" for="first-name">Registred Name</label>
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <label class="control-label col-lg-3 col-md-4 col-sm-5 col-xs-12" for="first-name">Registred Name</label>
+                                <div class="col-lg-6 col-md-6 col-sm-7 col-xs-12">
                                     {!! Form::text('name',$user->name,['placeholder' => 'Your UserName', 'class'=>'form-control col-md-7 col-xs-12', 'required'=>'required' ]) !!}
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="control-label col-lg-2 col-md-2 col-sm-2 col-xs-2" for="first-name">Position</label>
-
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                    {!! Form::select('Position',
+                                <label class="control-label col-lg-3 col-md-4 col-sm-5 col-xs-12" for="first-name">Position</label>
+                                <div class="col-lg-6 col-md-6 col-sm-7 col-xs-12">
+                                    {!! Form::select('position',
                                     $listOfPositions,
                                     $user->position_id,
                                     ['placeholder' => 'Pick your position', 'class'=>'form-control'])!!}
@@ -30,9 +29,9 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="control-label col-lg-2 col-md-2 col-sm-2 col-xs-2" for="first-name">Group</label>
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                    {!! Form::select('Group',
+                                <label class="control-label col-lg-3 col-md-4 col-sm-5 col-xs-12" for="first-name">Group</label>
+                                <div class="col-lg-6 col-md-6 col-sm-7 col-xs-12">
+                                    {!! Form::select('group',
                                         $listOfGroup,
                                         $user->group_id,
                                         ['placeholder' => 'Pick your group','class'=>'form-control']) !!}
