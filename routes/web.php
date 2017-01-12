@@ -33,6 +33,11 @@ Route::post('savesalary', ['as'=>'savesalary', 'uses'=>'ProfileController@saveSa
 
 Route::post('savesettings', ['as'=>'savesettings', 'uses'=>'ProfileController@saveSettings']);
 
+Route::post('editdata', ['as'=>'editdata', 'uses'=>'ProfileController@inlineEdit']);
+Route::get('editdata', ['as'=>'editdata', 'uses'=>'ProfileController@inlineEdit']);
+
+
+
 
 
 //Route::get('/profile/{id}', 'ProfileController@showProfile');

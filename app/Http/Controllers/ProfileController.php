@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\DB;
 use Intervention\Image\Facades\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Response;
+use Illuminate\Contracts\Routing\ResponseFactory;
 
 class ProfileController extends Controller
 {
@@ -319,8 +321,7 @@ class ProfileController extends Controller
         if($request->has('resivedid')) {
             $user = User::find($request->resivedid);
         } else{
-            $user = Auth::user();;
-
+            $user = Auth::user();
         }
 
         $updatedUser = User::find($user->id); //находим запись
@@ -554,7 +555,50 @@ class ProfileController extends Controller
         return back();
     }
 
+    public function updateField(Request $request)
+    {
+        if($request->ajax()) {
+            $this->school->find($request->get('pk'))->update([$request->get('name') => $request->get('value')]);
+        }
 
+        return response()->json(['success'=>true]);
+    }
+
+
+    public function inlineEdit(Request $request){
+
+
+
+        $id = $request->get('pk');
+        $value = $request->get('value');
+        $user=User::find($id);
+        $user->comments = $value;
+
+        if($user->save())
+            return Response()->json(['status'=>1]);
+        else
+            return Response()->json(['status'=>0]);
+
+
+        //        return response()->json([
+//            'status' => '1'
+//        ]);
+
+//        $data = $request->all();
+//        dump($data);
+    }
+
+
+//return response()->json([
+//'name' => 'Abigail',
+//'state' => 'CA'
+//]);
+//If you would like to create a JSONP response, you may use the json method in combination with the withCallback method:
+//
+//return response()
+//            ->json(['name' => 'Abigail', 'state' => 'CA'])
+//            ->withCallback($request->input('callback'));
+//
 
     /**
      * Show the form for creating a new resource.

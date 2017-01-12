@@ -11,12 +11,21 @@
 
         <title>HR System!</title>
 
+
+
+
         <!-- Bootstrap -->
         <link href="{{ asset("css/bootstrap.min.css") }}" rel="stylesheet">
         <!-- Font Awesome -->
         <link href="{{ asset("css/font-awesome.min.css") }}" rel="stylesheet">
         <!-- Custom Theme Style -->
         <link href="{{ asset("css/gentelella.min.css") }}" rel="stylesheet">
+
+
+
+
+
+
 
         @stack('stylesheets')
 
@@ -35,7 +44,7 @@
             </div>
         </div>
 
-            
+
 
         <!-- jQuery -->
         <script src={!! asset('js/jquery.min.js') !!}></script>
@@ -48,9 +57,21 @@
 
 
 
-        
+        {{--X-editable build--}}
+        {{--<script src={!! asset('bootstrap/bootstrap-editable/css/bootstrap-editable.css') !!}></script>--}}
+        {{--<script src={!! asset('bootstrap/bootstrap-editable/js/bootstrap-editable.min.js') !!}></script>--}}
+
+        <link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet"/>
+        {{--<script src={!! asset('css/bootstrap-editable.css') !!}></script>--}}
+        <script src={!! asset('js/bootstrap-editable.min.js') !!}></script>
+
+
+
 
         @stack('scripts')
-        
+
+
+
+
     </body>
 </html>
