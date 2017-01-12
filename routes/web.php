@@ -37,6 +37,9 @@ Route::post('editdata', ['as'=>'editdata', 'uses'=>'ProfileController@inlineEdit
 Route::get('editdata', ['as'=>'editdata', 'uses'=>'ProfileController@inlineEdit']);
 
 
+Route::post('editsalary', ['as'=>'editsalary', 'uses'=>'UserListController@editSalary']);
+Route::post('editposition', ['as'=>'editposition', 'uses'=>'UserListController@editPosition']);
+Route::post('editgroup', ['as'=>'editgroup', 'uses'=>'UserListController@editGroup']);
 
 
 

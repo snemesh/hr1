@@ -6,6 +6,12 @@ use App\Group;
 use App\Position;
 use App\User;
 use Illuminate\Http\Request;
+use App\Salarylog;
+use Illuminate\Support\Facades\DB;
+use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Response;
+use Illuminate\Contracts\Routing\ResponseFactory;
 
 class UserListController extends Controller
 {
@@ -25,13 +31,95 @@ class UserListController extends Controller
 
         $listOfPositions = Position::query()->pluck('positionname','id')->toArray();
         $listOfGroup = Group::query()->pluck('groupname','id')->toArray();
-
+        $listOfPositionsOBJ=Position::query()->pluck('positionname','id')->toJson();
+        $listOfGroupsOBJ=Group::query()->pluck('groupname','id')->toJson();
 
         return view('userlist')
-            ->with('listOfusers',$listOfusers)
-            ->with('listOfPositions',$listOfPositions)
-            ->with('listOfGroup',$listOfGroup);
+            ->with('listOfusers', $listOfusers)
+            ->with('listOfPositions', $listOfPositions)
+            ->with('listOfGroup', $listOfGroup)
+            ->with('listOfPositionsOBJ', $listOfPositionsOBJ)
+            ->with('listOfGroupsOBJ', $listOfGroupsOBJ);
 
+    }
+
+    public function editSalary(Request $request){
+        $numbersOfDaysInMonth = 173;
+        $this->validate($request,[
+            'id'=> 'int',
+            'value'=> 'numeric',
+        ]);
+        $id = $request->get('pk');
+        //$id="d";
+        $value = $request->get('value');
+        $updatedUser=User::find($id);
+
+
+        if($updatedUser->salary!=$value) {
+            $updatedUser->salary = $value;
+            $userRate = $value / $numbersOfDaysInMonth;  //call a rate
+            $updatedUser->rate = round($userRate, 2);
+            $logedSalary = new Salarylog;                // creating new reccord in the logsalary table
+            $logedSalary->user_id = $id;
+            $logedSalary->salary = $value;
+            $initUser = Auth::user();
+            $logedSalary->init = $initUser->email;
+            $logedSalary->comments = "Bulk updated";
+            $logedSalary->save(); //saving results
+        }
+
+
+
+        if($updatedUser->save())
+            return Response()->json(['status'=>1]);
+            //return Response("Cannot update this information!");
+
+        else
+            return Response()->json(['status'=>0]);
+            //return Response("Perfect!");
+
+    }
+    public function editPosition(Request $request){
+
+        $this->validate($request,[
+            'id'=> 'int',
+            'value'=> 'numeric',
+        ]);
+        $id = $request->get('pk');
+
+        $value = $request->get('value');
+        $updatedUser=User::find($id);
+
+        if($updatedUser->position_id!=$value) {
+            $updatedUser->position_id = $value;
+        }
+
+        if($updatedUser->save())
+            return Response()->json(['status'=>1]);
+        else
+            return Response()->json(['status'=>0]);
+    }
+
+
+    public function editGroup(Request $request){
+
+        $this->validate($request,[
+            'id'=> 'int',
+            'value'=> 'numeric',
+        ]);
+        $id = $request->get('pk');
+
+        $value = $request->get('value');
+        $updatedUser=User::find($id);
+
+        if($updatedUser->group_id!=$value) {
+            $updatedUser->group_id = $value;
+        }
+
+        if($updatedUser->save())
+            return Response()->json(['status'=>1]);
+        else
+            return Response()->json(['status'=>0]);
     }
 
     /**

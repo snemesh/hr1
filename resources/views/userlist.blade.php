@@ -111,6 +111,33 @@
 //            $("#datatable-buttons").load();
 //        });
 
+        $.fn.editable.defaults.params = function (params) {
+            params._token = $("#_token").data("token");
+            return params;
+        };
+        $(".salary").editable({
+            //mode:'inline'
+            placement:'top',
+            success: function(response, newValue) {
+                if(!response.success) return response.msg;
+            }
+
+        });
+        $(".position").editable({
+            //mode:'inline'
+            placement:'top',
+            //source:'array',
+            //prepend:'array'
+
+        });
+        $(".group").editable({
+            //mode:'inline'
+            placement:'top',
+            //source:'array',
+            //prepend:'array'
+
+        });
+
 
         var handleDataTableButtons = function() {
             if ($("#datatable-buttons").length) {
@@ -176,6 +203,23 @@
         TableManageButtons.init();
 
     });
+
+
+
+
+    $(document).ready(function() {
+
+        {{--$.fn.editable.defaults.params = function (params) {--}}
+            {{--params._token = $("#_token").data("token");--}}
+            {{--return params;--}}
+        {{--};--}}
+        {{--$(".salary").editable({--}}
+            {{--//type: 'text',--}}
+            {{--url:'{{URL::to("/")}}/editdata'--}}
+        {{--});--}}
+
+    });
+
 </script>
 
 @endpush
