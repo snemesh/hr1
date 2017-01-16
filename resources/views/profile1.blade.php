@@ -109,6 +109,8 @@
 
 
 
+
+
         var cnt = 10;
 
         TabbedNotification = function(options) {
@@ -172,6 +174,40 @@
 
 
 
+    });
+
+
+    $(document).on('click', '#delete', function () {
+
+        var myId = [];
+
+        var MyRows = $('table#tblExport').find('.checked');
+        for (var i = 0; i < MyRows.length; i++){
+            //alert($(MyRows[i]).find('td:eq('+1+')').html());
+                //console.log($(MyRows[i]).find('.record').attr('id'));
+                myId.push($(MyRows[i]).find('.record').attr('id'));
+            }
+        console.log(myId);
+
+        var token = $("#_token").data("token");
+
+
+        $.ajax({
+
+            url: '/mass_delete',
+            type: 'DELETE',
+            data: {
+                "users_ids": myId,
+                "_method": 'DELETE',
+                "_token": token
+            }
+        })
+            .done(function( response ) {
+                console.log("Success!!!");
+            })
+            .fail(function() {
+                console.log("Error!!!");
+            })
     });
 
 

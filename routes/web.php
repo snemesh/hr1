@@ -42,6 +42,8 @@ Route::post('editposition', ['as'=>'editposition', 'uses'=>'UserListController@e
 Route::post('editgroup', ['as'=>'editgroup', 'uses'=>'UserListController@editGroup']);
 
 
+Route::delete('mass_delete', 'UserListController@massDelete');
+
 
 //Route::get('/profile/{id}', 'ProfileController@showProfile');
 

@@ -45,7 +45,7 @@
     @foreach($mySalaryLogs as $SalaryLog)
         <tr class="even pointer">
             <td class="a-center ">
-                <input type="checkbox" class="flat" name="table_records">
+                <input type="checkbox" class="flat record" name="table_records" id="{!! $SalaryLog->id !!}">
             </td>
             <td class=" ">{!! $SalaryLog->salary !!}</td>
             <td class=" ">{!! $SalaryLog->init !!}</td>

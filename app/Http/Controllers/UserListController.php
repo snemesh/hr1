@@ -127,6 +127,21 @@ class UserListController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function massDelete(Request $myId) {
+
+        $ids = $myId->all();
+        //dump($ids);
+
+        Salarylog::destroy($ids);
+        // redirect or whatever...
+
+        //Salarylog::find($ids->all())->delete();
+        //$ids_to_delete = array_map(function($item){ return $item[0]; }, $ids);
+
+        //Salarylog::find($myId->all())->delete();
+
+    }
+
     public function create()
     {
         //

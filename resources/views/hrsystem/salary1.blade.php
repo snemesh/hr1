@@ -100,7 +100,7 @@
                 </div>
             </div>
             <div class="table-responsive">
-                <table class="table table-striped jambo_table bulk_action">
+                <table class="table table-striped jambo_table bulk_action" id="tblExport">
                     <thead>
                     <tr class="headings">
                         <th>
@@ -113,7 +113,7 @@
 
                         <th class="bulk-actions dropdown" colspan="7">
                             <a class="antoo" style="color:#fff; font-weight:500;" href="#">Bulk Actions  ( <span class="action-cnt "></span> )
-                                <i class="glyphicon glyphicon-trash"></i> <span class="btn-mini" type="submit"> Delete</span></a>
+                                <i class="glyphicon glyphicon-trash"></i> <span class="btn-mini" type="submit" id="delete"> Delete</span></a>
                         </th>
                     </tr>
                     </thead>
