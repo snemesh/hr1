@@ -208,6 +208,7 @@
             .fail(function() {
                 console.log("Error!!!");
             })
+        location.reload();
     });
 
 

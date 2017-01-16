@@ -471,8 +471,10 @@ class ProfileController extends Controller
             $this->validate($request,[
                 'resivedid'=> 'int',
                 'name'=> 'string|max:50',
+                'email'=> 'string|max:50',
                 'salary'=> 'numeric',
                 'comments'=> 'required_if:salary,numeric|string|max:100',
+                'updated_at'=>'date',
             ]);
         }
 
@@ -481,7 +483,7 @@ class ProfileController extends Controller
 //        echo "comments = ". $request->comments."<br>";
 
         $updatedUser = User::find($request->resivedid); //находим запись
-
+        dump($request->all());
 
         //присваеваем новое значение salary из формы
         if($updatedUser->salary!=$request->salary) {
@@ -494,16 +496,14 @@ class ProfileController extends Controller
             $initUser = Auth::user();
             $logedSalary->init = $initUser->email;
             $logedSalary->comments = $request->comments;
+            if($request->updated_at!=null){
+                $logedSalary->updated_at = $request->updated_at;
+            }
             $logedSalary->save(); //saving results
 
-//            echo '$updatedUser->salary ='.$updatedUser->salary."<br>";
-
         }
-        //if($updatedUser->comments!=$request->comments) $updatedUser->comments = $request->comments;
-        //if($updatedUser->email!=$request->email) $updatedUser->email = $request->email;
-        if($updatedUser->name!=$request->name) $updatedUser->name = $request->name;
-        //if($updatedUser->fired!=$request->fired) $updatedUser->fired = $request->fired;
 
+        if($updatedUser->name!=$request->name  and $request->name!=null) $updatedUser->name = $request->name;
         $updatedUser->save();                            //сохраняем
 
         if($request->isMethod('post')) {

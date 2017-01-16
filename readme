@@ -1,0 +1,9 @@
+Краткая инструкция по обновлению
+git remote -v сотрим статус по текущим удаленным репозиториям
+git pull origin сливаем последние изменения с  git
+php artisan serve запускаем локальный сервер
+
+http://eax.me/git-commands/
+https://git-scm.com/book/ru/v1/Основы-Git-Работа-с-удалёнными-репозиториями
+
+sudo chown -R snemesh hr1

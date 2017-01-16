@@ -20,14 +20,12 @@
                 <div id="_token" class="hidden" data-token="{{ csrf_token() }}"></div>
                 @foreach($listOfusers as $user)
                     <tr>
-                        {{--<td>{!! $user->id !!}</td>--}}
                         <td>{!! $user->name !!}</td>
                         <td>{!! $user->email !!}</td>
                         <td>
                             <a id="salary" class="pUpdate salary"
                                data-type="text"
                                data-pk='{!! $user->id !!}'
-                               {{--data-ajax--url='{{URL::to("/")}}/editsalary'--}}
                                data-url="{{URL::to("/")}}/editsalary"
                                data-title="Please enter new salary"> {!! $user->salary !!}</a>
                         </td>
@@ -53,7 +51,6 @@
                         </td>
                         <td>{!! $user->updated_at !!}</td>
                         <td class=" last"><a href="/profile/{!! $user->id !!}"><i class="fa fa-pencil">  View</i></a></td>
-                        {{--<td class=" last"><a href="/profile"><i class="fa fa-pencil">  View</i></a></td>--}}
                     </tr>
                 @endforeach
 
