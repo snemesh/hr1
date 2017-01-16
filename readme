@@ -7,3 +7,5 @@ http://eax.me/git-commands/
 https://git-scm.com/book/ru/v1/Основы-Git-Работа-с-удалёнными-репозиториями
 
 sudo chown -R snemesh hr1
+
+sudo chown -R www-data hrsystem
