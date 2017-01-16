@@ -42,6 +42,14 @@
 <script src={{ asset('gentelella/vendors/pnotify/dist/pnotify.js') }}></script>
 <script src={{ asset('gentelella/vendors/pnotify/dist/pnotify.buttons.js') }}></script>
 <script src={{ asset('gentelella/vendors/pnotify/dist/pnotify.nonblock.js') }}></script>
+
+<!-- bootstrap-daterangepicker -->
+<script src={{ asset('gentelella/production/js/moment/moment.min.js') }}></script>
+<script src={{ asset('gentelella/production/js/datepicker/daterangepicker.js') }}></script>
+
+
+
+
 <!-- Custom Theme Scripts -->
 {{--<script src={{ asset('gentelella/build/js/custom.min.js') }}></script>--}}
 
@@ -217,7 +225,41 @@
 
 
 
+<script>
+    $(document).ready(function() {
+        var start = moment().subtract(29, 'days');
+        var end = moment();
 
+        $('#single_cal1').daterangepicker({
+            singleDatePicker: true,
+            calender_style: "picker_1"
+        }, function(start, end, label) {
+            console.log(start.toISOString(), end.toISOString(), label);
+        });
+        $('#single_cal2').daterangepicker({
+            singleDatePicker: true,
+            calender_style: "picker_2"
+        }, function(start, end, label) {
+            console.log(start.toISOString(), end.toISOString(), label);
+        });
+        $('#single_cal3').daterangepicker({
+            singleDatePicker: true,
+            calender_style: "picker_3"
+        }, function(start, end, label) {
+            console.log(start.toISOString(), end.toISOString(), label);
+        });
+        $('#single_cal4').daterangepicker({
+            singleDatePicker: true,
+            calender_style: "picker_4",
+            startDate: start,
+            endDate: end,
+            format: 'YYYY-MM-DD'
+
+        }, function(start, end, label) {
+            console.log(start.toISOString(), end.toISOString(), label);
+        });
+    });
+</script>
 
 
 

@@ -12,10 +12,22 @@
     </td>
     <td>
         {!! Form::text('email',$user->email,['placeholder' => 'Your UserName', 'class'=>'form-control', 'required'=>'required' ]) !!}
-
     </td>
     <td>
-        {!! Form::text('updated_at',$user->updated_at,['placeholder' => 'Your UserName', 'class'=>'form-control', 'required'=>'required' ]) !!}
+
+        <fieldset>
+            <div class="control-group">
+                <div class="controls">
+                    <div class="col-md-11 xdisplay_inputx form-group has-feedback">
+                        {{--<input value="{!! $SalaryLog->updated_at !!}" type="text" class="form-control has-feedback-left" id="single_cal4" placeholder="Enter date" aria-describedby="inputSuccess2Status4">--}}
+                        {!! Form::text('updated_at',$user->updated_at,['placeholder' => 'Enter date', 'class'=>'form-control has-feedback-left', 'required'=>'required', 'id' => 'single_cal4','aria-describedby'=>'inputSuccess2Status4' ]) !!}
+                        <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
+                        <span id="inputSuccess2Status4" class="sr-only">(success)</span>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+
     </td>
     <td>
         {!! Form::text('comments','add new comment',['placeholder' => 'Enter the comment', 'class'=>'form-control', 'required'=>'required' ]) !!}

@@ -483,7 +483,6 @@ class ProfileController extends Controller
 //        echo "comments = ". $request->comments."<br>";
 
         $updatedUser = User::find($request->resivedid); //находим запись
-        dump($request->all());
 
         //присваеваем новое значение salary из формы
         if($updatedUser->salary!=$request->salary) {
