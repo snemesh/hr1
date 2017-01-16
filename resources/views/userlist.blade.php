@@ -123,6 +123,7 @@
             }
 
         });
+
         $(".position").editable({
             //mode:'inline'
             placement:'top',

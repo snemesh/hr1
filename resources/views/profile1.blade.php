@@ -85,6 +85,30 @@
 <!-- Custom Notification -->
 <script>
     $(document).ready(function() {
+
+        $.fn.editable.defaults.params = function (params) {
+            params._token = $("#_token").data("token");
+            return params;
+        };
+
+        $(document).on('click', '#addrecord', function(e) {
+            $('#newline').removeAttr('hidden');
+        });
+
+
+
+        $("#salary").editable({
+            //mode:'inline'
+            placement:'top',
+            success: function(response, newValue) {
+                //location.reload();
+                if(!response.success) return response.msg;
+            }
+
+        });
+
+
+
         var cnt = 10;
 
         TabbedNotification = function(options) {
@@ -132,31 +156,7 @@
         });
     });
 
-    {{--$(document).ready(function() {--}}
-        {{--//edit form style - popup or inline--}}
-                {{--$.fn.editable.defaults.mode = 'popup';--}}
 
-                {{--$('.pUpdate').editable({--}}
-                {{--validate: function (value) {--}}
-                {{--if ($.trim(value) == '')--}}
-                {{--return 'Value is required.';--}}
-                {{--},--}}
-                {{--type: 'text',--}}
-                {{--url: '{{URL::to("/")}}/editdata',--}}
-                {{--title: 'Edit Status',--}}
-                {{--placement: 'top',--}}
-                {{--send: 'always',--}}
-                {{--ajaxOptions: {--}}
-                {{--dataType: 'json'--}}
-                {{--}--}}
-                {{--});--}}
-
-            {{--$.fn.editable.defaults.params = function (params) {--}}
-            {{--params._token = $("#_token").data("token");--}}
-            {{--return params;--}}
-        {{--};--}}
-        {{--$("#text").editable();--}}
-    {{--});--}}
 
     $(document).ready(function() {
 
@@ -168,6 +168,9 @@
             //type: 'text',
             url:'{{URL::to("/")}}/editdata'
         });
+
+
+
 
     });
 

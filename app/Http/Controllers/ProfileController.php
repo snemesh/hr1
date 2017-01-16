@@ -290,13 +290,16 @@ class ProfileController extends Controller
         //$userGroup = $curUser->usergroup->groupname;
         //dump($userPosition);
 
+        $mySalaryLogs=User::find($user->id)->salarylog;
+        $mySalaryLogs=DB::table('salarylog')->where('user_id',$user->id)->orderBy('updated_at', 'desc')->get();
 
         return view('profile1')->with('bt1' , $bt1)
             ->with('bt2', $bt2)
             ->with('user', $user)
             ->with('listOfPositions', $listOfPositions)
             ->with('listOfGroup' , $listOfGroup)
-            ->with('salarycomment',$salarycomment);
+            ->with('salarycomment',$salarycomment)
+            ->with('mySalaryLogs', $mySalaryLogs);
     }
 
 

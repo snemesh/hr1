@@ -39,7 +39,7 @@
                     </div>
                     <div role="tabpanel" class="{!! session()->get('activetab2.page','tab-pane fade') !!}" id="salary-tb" aria-labelledby="profile-tab">
 
-                        @include('hrsystem.salary')
+                        @include('hrsystem.salary1')
 
                     </div>
                     <div role="tabpanel" class="{!! session()->get('activetab3.page','tab-pane fade') !!}" id="settings-tb" aria-labelledby="profile-tab">
