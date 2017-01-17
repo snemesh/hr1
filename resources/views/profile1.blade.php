@@ -210,11 +210,11 @@
             }
         })
             .done(function( response ) {
-                console.log("Success!!!");
+                console.log("Success SlaryLog deletting!!!");
             })
             .fail(function() {
-                console.log("Error!!!");
-            })
+                console.log("Problems with Salarylog");
+            });
         location.reload();
     });
 
