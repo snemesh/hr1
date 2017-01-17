@@ -215,6 +215,7 @@
             .fail(function() {
                 console.log("Problems with Salarylog");
             });
+        console.log(myId);
         location.reload();
     });
 
