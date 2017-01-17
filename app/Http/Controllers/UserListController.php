@@ -136,7 +136,7 @@ class UserListController extends Controller
         Salarylog::destroy($ids);
 
 
-        if($request->isMethod('delete')) {
+        //if($request->isMethod('delete')) {
             $request->session()->flash('activetab1.tab', '');
             $request->session()->flash('activetab2.tab', 'active');
             $request->session()->flash('activetab3.tab', '');
@@ -144,7 +144,7 @@ class UserListController extends Controller
             $request->session()->flash('activetab1.page', 'tab-pane fade');
             $request->session()->flash('activetab2.page', 'tab-pane fade active in');
             $request->session()->flash('activetab3.page', 'tab-pane fade');
-        }
+        //}
 
         return($ids);
     }
