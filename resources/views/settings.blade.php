@@ -29,7 +29,7 @@
     <!-- page content -->
     <div class="right_col" role="main">
         <div id="_token" class="hidden" data-token="{{ csrf_token() }}"></div>
-        @include('hrsystem.positions')
+        @include('hrsystem.positionsandgroups')
     </div>
     <!-- /page content -->
 
@@ -374,6 +374,34 @@
             type: 'DELETE',
             data: {
                 "position_ids": PositionId,
+                "_method": 'DELETE',
+                "_token": token
+            }
+        })
+            .done(function( response ) {
+                console.log("Success!!!");
+            })
+            .fail(function() {
+                console.log("Error!!!");
+            });
+        location.reload();
+    });
+
+
+    $(document).on('click', '#delete', function () { //prepare list for bulk delete
+        var GroupId = [];
+        var MyRows = $('table#tblGroup').find('.checked'); //searching elements with class=checked
+        for (var i = 0; i < MyRows.length; i++){
+            GroupId.push($(MyRows[i]).find('.record').attr('id')); //add 'id' of the found element to the array myId
+        }
+        console.log(GroupId);
+        var token = $("#_token").data("token");
+
+        $.ajax({
+            url: '/mass_delete_groups',
+            type: 'DELETE',
+            data: {
+                "group_ids": GroupId,
                 "_method": 'DELETE',
                 "_token": token
             }

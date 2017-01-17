@@ -43,11 +43,11 @@
                         <td>
                             <a id="group" class="pUpdate group"
                                data-type="select"
-                               data-prepend='{!! $listOfGroup[$user->group_id] !!}'
+                               data-prepend='{!! isset($user->usergroup->groupname)? $user->usergroup->groupname:"Please chose"  !!}'
                                data-source="{{$listOfGroupsOBJ }}"
                                data-pk='{!! $user->id !!}'
                                data-url="{{URL::to("/")}}/editgroup"
-                               data-title="Please choose new group"> {!! $listOfGroup[$user->group_id] !!}</a>
+                               data-title="Please choose new group"> {!! isset($user->usergroup->groupname)? $user->usergroup->groupname:"Please chose"  !!}</a>
                         </td>
                         <td>{!! $user->updated_at !!}</td>
                         <td class=" last"><a href="/profile/{!! $user->id !!}"><i class="fa fa-pencil">  View</i></a></td>

@@ -100,6 +100,30 @@ class SettingsController extends Controller
 
     }
 
+    public function changeGroupName(Request $request)
+    {
+        $this->validate($request,[
+            'id'=> 'int',
+            'value'=> 'required|string|max:25',
+        ]);
+        $id = $request->get('pk');
+
+        $value = $request->get('value');
+        $updatedGroup=Group::find($id);
+
+
+        if($updatedGroup->groupname!=$value) {
+            $updatedGroup->groupname = $value;
+        }
+
+        if($updatedGroup->save())
+            return Response()->json(['status'=>1]);
+        else
+            return Response()->json(['status'=>0]);
+
+    }
+
+
     /**
      * Remove the specified resource from storage.
      *
@@ -115,12 +139,28 @@ class SettingsController extends Controller
 
         $listOfPositions=Position::query()->get();
         $listOfPositionsOBJ=Position::query()->pluck('positionname','id')->toJson();
+        $listOfGroups=Group::query()->get();
+        $listOfGroupsOBJ=Group::query()->pluck('groupname','id')->toJson();
 
         return view('settings')
             ->with('listOfPositionsOBJ', $listOfPositionsOBJ)
-            ->with('listOfPositions',$listOfPositions);
+            ->with('listOfPositions',$listOfPositions)
+            ->with('listOfGroupsOBJ', $listOfGroupsOBJ)
+            ->with('listOfGroups',$listOfGroups);
 
     }
+
+    public function showGroup(Request $request){
+
+        $listOfGroups=Group::query()->get();
+        $listOfGroupsOBJ=Position::query()->pluck('groupname','id')->toJson();
+
+        return view('settings')
+            ->with('listOfGroupsOBJ', $listOfGroupsOBJ)
+            ->with('listOfGroups',$listOfGroups);
+
+    }
+
     public function addPosition(Request $request){
         $this->validate($request,[
             'position'=> 'string|max:50',
@@ -132,11 +172,33 @@ class SettingsController extends Controller
         return(redirect('/settings'));
     }
 
-    public function balkDelete(Request $request){
+    public function addGroup(Request $request){
+        $this->validate($request,[
+            'group'=> 'string|max:50',
+        ]);
+
+        $newGroup = new Group();
+        $newGroup->groupname = $request->group;
+        $newGroup->save();
+        return(redirect('/settings'));
+    }
+
+
+    public function balkDeletePositions(Request $request){
         $ids = $request->position_ids;
 
         Position::destroy($ids);
         return($ids);
     }
 
+    public function balkDeleteGroups(Request $request){
+        $ids = $request->group_ids;
+
+        Group::destroy($ids);
+        return($ids);
+    }
+
+
+
 }
+

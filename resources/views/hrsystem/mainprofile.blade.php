@@ -34,11 +34,13 @@
             <li><i class="fa fa-sitemap user-profile-icon"></i>
                 <a id="group" class="pUpdate group"
                    data-type="select"
-                   data-prepend='{!! $listOfGroup[$user->group_id] !!}'
+{{--                   data-prepend='{!! $listOfGroup[$user->group_id] !!}'--}}
+                   data-prepend='{!! isset($user->usergroup->groupname)? $user->usergroup->groupname:"Please chose" !!}'
+
                    data-source="{{$listOfGroupsOBJ }}"
                    data-pk='{!! $user->id !!}'
                    data-url="{{URL::to("/")}}/editgroup"
-                   data-title="Please choose new group"> {!! $listOfGroup[$user->group_id] !!}</a>
+                   data-title="Please choose new group"> {!! isset($user->usergroup->groupname)? $user->usergroup->groupname:"Please chose" !!}</a>
             </li>
 
 

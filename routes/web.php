@@ -57,9 +57,13 @@ Route::get('/userlist', 'UserListController@showUsers');
 
 Route::get('/settings', 'SettingsController@showPositions');
 Route::post('onlypositions', ['as'=>'onlypositions', 'uses'=>'SettingsController@changePositionName']);
-Route::post('addposition', ['as'=>'addposition', 'uses'=>'SettingsController@addPosition']);
-Route::delete('mass_delete_positions', 'SettingsController@balkDelete');
+Route::post('onlygroups', ['as'=>'onlygroups', 'uses'=>'SettingsController@changeGroupName']);
 
+Route::post('addposition', ['as'=>'addposition', 'uses'=>'SettingsController@addPosition']);
+Route::post('addgroup', ['as'=>'addgroup', 'uses'=>'SettingsController@addGroup']);
+
+Route::delete('mass_delete_positions', 'SettingsController@balkDeletePositions');
+Route::delete('mass_delete_groups', 'SettingsController@balkDeleteGroups');
 
 
 
