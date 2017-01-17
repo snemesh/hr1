@@ -272,6 +272,9 @@ class ProfileController extends Controller
 
         $listOfPositions = Position::query()->pluck('positionname','id')->toArray();
         $listOfGroup = Group::query()->pluck('groupname','id')->toArray();
+        $listOfPositionsOBJ=Position::query()->pluck('positionname','id')->toJson();
+        $listOfGroupsOBJ=Group::query()->pluck('groupname','id')->toJson();
+
 
 
         //$salarycomment=User::find($user->id)->salarylog()->where('salary','=', $user->salary);
@@ -299,7 +302,9 @@ class ProfileController extends Controller
             ->with('listOfPositions', $listOfPositions)
             ->with('listOfGroup' , $listOfGroup)
             ->with('salarycomment',$salarycomment)
-            ->with('mySalaryLogs', $mySalaryLogs);
+            ->with('mySalaryLogs', $mySalaryLogs)
+            ->with('listOfPositionsOBJ',$listOfPositionsOBJ)
+            ->with('listOfGroupsOBJ',$listOfGroupsOBJ);
     }
 
 

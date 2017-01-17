@@ -109,10 +109,6 @@
 
         });
 
-
-
-
-
         var cnt = 10;
 
         TabbedNotification = function(options) {
@@ -147,7 +143,6 @@
         };
 
         CustomTabs();
-
         var tabid = idname = '';
 
         $(document).on('click', '.notification_close', function(e) {
@@ -163,13 +158,11 @@
 
 
     $(document).ready(function() {
-
         $.fn.editable.defaults.params = function (params) {
         params._token = $("#_token").data("token");
         return params;
         };
         $("#text").editable({
-            //type: 'text',
             url:'{{URL::to("/")}}/editdata'
         });
 
@@ -182,27 +175,19 @@
 
         });
 
-
     });
 
 
-    $(document).on('click', '#delete', function () {
-
+    $(document).on('click', '#delete', function () { //prepare list for bulk delete
         var myId = [];
-
-        var MyRows = $('table#tblExport').find('.checked');
+        var MyRows = $('table#tblExport').find('.checked'); //searching elements with class=checked
         for (var i = 0; i < MyRows.length; i++){
-            //alert($(MyRows[i]).find('td:eq('+1+')').html());
-                //console.log($(MyRows[i]).find('.record').attr('id'));
-                myId.push($(MyRows[i]).find('.record').attr('id'));
+                myId.push($(MyRows[i]).find('.record').attr('id')); //add 'id' of the found element to the array myId
             }
         console.log(myId);
-
         var token = $("#_token").data("token");
 
-
         $.ajax({
-
             url: '/mass_delete',
             type: 'DELETE',
             data: {
@@ -219,7 +204,6 @@
             })
         location.reload();
     });
-
 
 </script>
 
@@ -261,71 +245,6 @@
         });
     });
 </script>
-
-
-
-
-
-<!-- /Custom Notification -->
-
-
-{{--<script>--}}
-
-    {{--$(document).ready(function() {--}}
-        {{--$('#home-tabb').click(function () {--}}
-
-{{--//            sessionStorage.setItem('activeTab1', 'active');--}}
-{{--//            sessionStorage.setItem('activeTab2', '');--}}
-{{--//            sessionStorage.setItem('activeTab3', '');--}}
-{{--//            $('#home-tabb').attr('class', 'active');--}}
-{{--//            $('#salary-tabb').attr('class', '');--}}
-{{--//            $('#setting-tabb').attr('class', '');--}}
-
-
-
-
-{{--//        $('#datatable').attr('id', 'datatable-buttons');--}}
-{{--//        $("#datatable-buttons").load();--}}
-
-        {{--});--}}
-
-        {{--$('#salary-tabb').click(function () {--}}
-
-
-{{--//            sessionStorage.setItem('activeTab1', '');--}}
-{{--//            sessionStorage.setItem('activeTab2', 'active');--}}
-{{--//            sessionStorage.setItem('activeTab3', '');--}}
-{{--//            $('#home-tabb').attr('class', '');--}}
-{{--//            $('#salary-tabb').attr('class', 'active');--}}
-{{--//            $('#setting-tabb').attr('class', '');--}}
-
-
-            {{--//alert("Кликнули по табу profile-tabb");--}}
-
-{{--//        $('#datatable').attr('id', 'datatable-buttons');--}}
-{{--//        $("#datatable-buttons").load();--}}
-
-        {{--});--}}
-
-        {{--$('#setting-tabb').click(function () {--}}
-
-{{--//            sessionStorage.setItem('activeTab1', '');--}}
-{{--//            sessionStorage.setItem('activeTab2', '');--}}
-{{--//            sessionStorage.setItem('activeTab3', 'active');--}}
-{{--//            $('#home-tabb').attr('class', '');--}}
-{{--//            $('#salary-tabb').attr('class', '');--}}
-{{--//            $('#setting-tabb').attr('class', 'active');--}}
-
-{{--//            alert("Кликнули по табу settings");--}}
-{{--//        $('#datatable').attr('id', 'datatable-buttons');--}}
-{{--//        $("#datatable-buttons").load();--}}
-
-        {{--});--}}
-
-
-    {{--});--}}
-
-{{--</script>--}}
 
 
 @endpush

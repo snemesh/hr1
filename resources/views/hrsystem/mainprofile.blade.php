@@ -17,8 +17,36 @@
         <h3>{!! $user->name !!}</h3>
         <ul class="list-unstyled user_data">
             <li><i class="fa fa-map-marker user-profile-icon"></i> Ukraine, Odess, UA</li>
-            <li><i class="fa fa-sitemap user-profile-icon"></i>{!! null==$user->group ? ' The user group haven\'t defined yet': ' Your group: '.$listOfGroup[$user->group_id] !!}</li>
-            <li><i class="fa fa-briefcase user-profile-icon"></i>{!! null==$user->position ? ' The Position was not defined':  ' Your position: '.$listOfPositions[$user->position_id] !!}</li>
+
+
+            {{--<li><i class="fa fa-sitemap user-profile-icon"></i>{!! null==$user->group ? ' The user group haven\'t defined yet': ' Your group: '.$listOfGroup[$user->group_id] !!}</li>--}}
+            <li><i class="fa fa-briefcase user-profile-icon"></i>
+                <a id="position" class="pUpdate position"
+                   data-type="select"
+                   data-prepend='{!! $listOfPositions[$user->position_id] !!}'
+                   data-source="{{$listOfPositionsOBJ }}"
+                   data-pk='{!! $user->id !!}'
+                   data-url="{{URL::to("/")}}/editposition"
+                   data-title="Please choose new position"> {!! $listOfPositions[$user->position_id] !!}</a>
+
+            </li>
+
+            <li><i class="fa fa-sitemap user-profile-icon"></i>
+                <a id="group" class="pUpdate group"
+                   data-type="select"
+                   data-prepend='{!! $listOfGroup[$user->group_id] !!}'
+                   data-source="{{$listOfGroupsOBJ }}"
+                   data-pk='{!! $user->id !!}'
+                   data-url="{{URL::to("/")}}/editgroup"
+                   data-title="Please choose new group"> {!! $listOfGroup[$user->group_id] !!}</a>
+            </li>
+
+
+
+
+
+
+
             <li class="m-top-xs">
                 <i class="fa fa-external-link user-profile-icon"></i>
                 <a href="http://www.intersog.com/" target="_blank">www.intersog.com</a>

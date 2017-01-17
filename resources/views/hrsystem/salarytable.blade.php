@@ -30,7 +30,7 @@
 
     </td>
     <td>
-        {!! Form::text('comments','add new comment',['placeholder' => 'Enter the comment', 'class'=>'form-control', 'required'=>'required' ]) !!}
+        {!! Form::text('comments','The planned salary raise',['placeholder' => 'Enter the comment', 'class'=>'form-control', 'required'=>'required' ]) !!}
     </td>
 </tr>
 {!! Form::token() . Form::close() !!}

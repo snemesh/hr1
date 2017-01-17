@@ -37,6 +37,8 @@
                         <th class="column-title">Date</th>
                         <th class="column-title">Comment</th>
 
+                        {{--functions for preraring BULK ACTIONS please find in file  views/profile1.b;ade.php
+                            $(document).on('click', '#delete', function ()  It used AJAX mothod to delete records frome database   --}}
                         <th class="bulk-actions dropdown" colspan="7">
                             <a class="antoo" style="color:#fff; font-weight:500;" href="#">Bulk Actions  ( <span class="action-cnt "></span> )
                                 <i class="glyphicon glyphicon-trash"></i> <span class="btn-mini" type="submit" id="delete"> Delete</span></a>

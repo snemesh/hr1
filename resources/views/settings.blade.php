@@ -2,10 +2,26 @@
 
 @push('stylesheets')
     <!-- iCheck -->
-    <link href={!! asset('gentelella/vendors/iCheck/skins/flat/green.css') !!} rel="stylesheet" />
-    <link href={!! asset('gentelella/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css') !!} rel="stylesheet"/>
+    <link href={!! asset('gentelella/vendors/iCheck/skins/flat/green.css') !!} rel="stylesheet" >
+    <link href={!! asset('gentelella/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css') !!} rel="stylesheet">
     <!-- jVectorMap -->
-    <link href={!! asset('gentelella/production/css/maps/jquery-jvectormap-2.0.3.css') !!} />
+    <link href={!! asset('gentelella/production/css/maps/jquery-jvectormap-2.0.3.css') !!} >
+    <!-- jVectorMap -->
+
+    <!-- Datatables -->
+    <link href={!! asset('gentelella/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css') !!} rel="stylesheet">
+    <link href={!! asset('gentelella/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css') !!} rel="stylesheet">
+    <link href={!! asset('gentelella/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css') !!} rel="stylesheet">
+    <link href={!! asset('gentelella/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css') !!} rel="stylesheet">
+    <link href={!! asset('gentelella/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css') !!} rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+    <link href={!! asset('gentelella/build/css/custom.min.css') !!} rel="stylesheet">
+
+    <link href={!! asset('') !!} rel="stylesheet">
+
+
+
 @endpush
 
 @section('main_container')
@@ -13,7 +29,7 @@
     <!-- page content -->
     <div class="right_col" role="main">
         <div id="_token" class="hidden" data-token="{{ csrf_token() }}"></div>
-        @include('hrsystem.profile1')
+        @include('hrsystem.positions')
     </div>
     <!-- /page content -->
 
@@ -28,13 +44,34 @@
 @endsection
 
 
+
 @push('scripts')
 
 
 <!-- FastClick -->
 <script src={{ asset('gentelella/vendors/fastclick/lib/fastclick.js') }}></script>
+
 <!-- NProgress -->
 <script src={{ asset('gentelella/vendors/nprogress/nprogress.js') }}></script>
+
+<!-- Datatables -->
+<script src={!! asset('gentelella/vendors/datatables.net/js/jquery.dataTables.min.js') !!}></script>
+<script src={!! asset('gentelella/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js') !!}></script>
+<script src={!! asset('gentelella/vendors/datatables.net-buttons/js/dataTables.buttons.min.js') !!}></script>
+<script src={!! asset('gentelella/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js') !!}></script>
+<script src={!! asset('gentelella/vendors/datatables.net-buttons/js/buttons.flash.min.js') !!}></script>
+<script src={!! asset('gentelella/vendors/datatables.net-buttons/js/buttons.html5.min.js') !!}></script>
+<script src={!! asset('gentelella/vendors/datatables.net-buttons/js/buttons.print.min.js') !!}></script>
+<script src={!! asset('gentelella/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js') !!}></script>
+<script src={!! asset('gentelella/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js') !!}></script>
+<script src={!! asset('gentelella/vendors/datatables.net-responsive/js/dataTables.responsive.min.js') !!}></script>
+<script src={!! asset('gentelella/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js') !!}></script>
+<script src={!! asset('gentelella/vendors/datatables.net-scroller/js/dataTables.scroller.min.js') !!}></script>
+<script src={!! asset('gentelella/vendors/jszip/dist/jszip.min.js') !!}></script>
+<script src={!! asset('gentelella/vendors/pdfmake/build/pdfmake.min.js') !!}></script>
+<script src={!! asset('gentelella/vendors/pdfmake/build/vfs_fonts.js') !!}></script>
+
+
 <!-- bootstrap-progressbar -->
 <script src={{ asset('gentelella/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js') }}></script>
 <!-- iCheck -->
@@ -52,6 +89,115 @@
 
 
 
+
+
+<script>
+    $(document).ready(function() {
+
+        $.fn.editable.defaults.params = function (params) {
+            params._token = $("#_token").data("token");
+            return params;
+        };
+        $(".salary").editable({
+            //mode:'inline'
+            placement:'top',
+            success: function(response, newValue) {
+                if(!response.success) return response.msg;
+            }
+
+        });
+
+        $(".position").editable({
+            //mode:'inline'
+            placement:'top',
+            //source:'array',
+            //prepend:'array'
+
+        });
+        $(".group").editable({
+            //mode:'inline'
+            placement:'top',
+            //source:'array',
+            //prepend:'array'
+
+        });
+
+
+        var handleDataTableButtons = function() {
+            if ($("#datatable-buttons").length) {
+                $("#datatable-buttons").DataTable({
+                    dom: "Bfrtip",
+                    buttons: [
+                        {
+                            extend: "copy",
+                            className: "btn-sm"
+                        },
+                        {
+                            extend: "csv",
+                            className: "btn-sm"
+                        },
+                        {
+                            extend: "excel",
+                            className: "btn-sm"
+                        },
+                        {
+                            extend: "pdfHtml5",
+                            className: "btn-sm"
+                        },
+                        {
+                            extend: "print",
+                            className: "btn-sm"
+                        },
+                    ],
+                    pageLength: 15, //https://datatables.net/reference/option/pageLength - здесь решение как менять параметры
+                    responsive: true
+                });
+            }
+        };
+
+        TableManageButtons = function() {
+            "use strict";
+            return {
+                init: function() {
+                    handleDataTableButtons();
+
+                }
+            };
+        }();
+
+        $('#datatable').dataTable();
+        $('#datatable-keytable').DataTable({
+            keys: true
+        });
+
+        $('#datatable-responsive').DataTable();
+
+        $('#datatable-scroller').DataTable({
+            ajax: "js/datatables/json/scroller-demo.json",
+            deferRender: true,
+            scrollY: 380,
+            scrollCollapse: true,
+            scroller: true
+        });
+
+        var table = $('#datatable-fixed-header').DataTable({
+            fixedHeader: true
+        });
+
+        TableManageButtons.init();
+
+    });
+
+
+</script>
+
+{{--=========================================================================================================--}}
+
+
+{{--Scripts for the tables--}}
+
+
+{{--=========================================================================================================--}}
 
 <!-- PNotify -->
 <script>
@@ -109,10 +255,6 @@
 
         });
 
-
-
-
-
         var cnt = 10;
 
         TabbedNotification = function(options) {
@@ -147,7 +289,6 @@
         };
 
         CustomTabs();
-
         var tabid = idname = '';
 
         $(document).on('click', '.notification_close', function(e) {
@@ -163,13 +304,11 @@
 
 
     $(document).ready(function() {
-
         $.fn.editable.defaults.params = function (params) {
-        params._token = $("#_token").data("token");
-        return params;
+            params._token = $("#_token").data("token");
+            return params;
         };
         $("#text").editable({
-            //type: 'text',
             url:'{{URL::to("/")}}/editdata'
         });
 
@@ -177,32 +316,60 @@
             placement:'right'
         });
 
+        $("#position").editable({
+            placement:'right'
+        });
+
+
         $(".group").editable({
             placement:'right'
 
         });
 
-
     });
 
 
-    $(document).on('click', '#delete', function () {
-
+    $(document).on('click', '#delete', function () { //prepare list for bulk delete
         var myId = [];
-
-        var MyRows = $('table#tblExport').find('.checked');
+        var MyRows = $('table#tblExport').find('.checked'); //searching elements with class=checked
         for (var i = 0; i < MyRows.length; i++){
-            //alert($(MyRows[i]).find('td:eq('+1+')').html());
-                //console.log($(MyRows[i]).find('.record').attr('id'));
-                myId.push($(MyRows[i]).find('.record').attr('id'));
-            }
+            myId.push($(MyRows[i]).find('.record').attr('id')); //add 'id' of the found element to the array myId
+        }
         console.log(myId);
-
         var token = $("#_token").data("token");
 
+        $.ajax({
+            url: '/mass_delete',
+            type: 'DELETE',
+            data: {
+                "users_ids": myId,
+                "_method": 'DELETE',
+                "_token": token
+            }
+        })
+            .done(function( response ) {
+                console.log("Success!!!");
+            })
+            .fail(function() {
+                console.log("Error!!!");
+            })
+        location.reload();
+    });
+
+
+
+
+
+    $(document).on('click', '#delete', function () { //prepare list for bulk delete
+        var myId = [];
+        var MyRows = $('table#tblPosition').find('.checked'); //searching elements with class=checked
+        for (var i = 0; i < MyRows.length; i++){
+            myId.push($(MyRows[i]).find('.record').attr('id')); //add 'id' of the found element to the array myId
+        }
+        console.log(myId);
+        var token = $("#_token").data("token");
 
         $.ajax({
-
             url: '/mass_delete',
             type: 'DELETE',
             data: {
@@ -263,72 +430,6 @@
 </script>
 
 
-
-
-
-<!-- /Custom Notification -->
-
-
-{{--<script>--}}
-
-    {{--$(document).ready(function() {--}}
-        {{--$('#home-tabb').click(function () {--}}
-
-{{--//            sessionStorage.setItem('activeTab1', 'active');--}}
-{{--//            sessionStorage.setItem('activeTab2', '');--}}
-{{--//            sessionStorage.setItem('activeTab3', '');--}}
-{{--//            $('#home-tabb').attr('class', 'active');--}}
-{{--//            $('#salary-tabb').attr('class', '');--}}
-{{--//            $('#setting-tabb').attr('class', '');--}}
-
-
-
-
-{{--//        $('#datatable').attr('id', 'datatable-buttons');--}}
-{{--//        $("#datatable-buttons").load();--}}
-
-        {{--});--}}
-
-        {{--$('#salary-tabb').click(function () {--}}
-
-
-{{--//            sessionStorage.setItem('activeTab1', '');--}}
-{{--//            sessionStorage.setItem('activeTab2', 'active');--}}
-{{--//            sessionStorage.setItem('activeTab3', '');--}}
-{{--//            $('#home-tabb').attr('class', '');--}}
-{{--//            $('#salary-tabb').attr('class', 'active');--}}
-{{--//            $('#setting-tabb').attr('class', '');--}}
-
-
-            {{--//alert("Кликнули по табу profile-tabb");--}}
-
-{{--//        $('#datatable').attr('id', 'datatable-buttons');--}}
-{{--//        $("#datatable-buttons").load();--}}
-
-        {{--});--}}
-
-        {{--$('#setting-tabb').click(function () {--}}
-
-{{--//            sessionStorage.setItem('activeTab1', '');--}}
-{{--//            sessionStorage.setItem('activeTab2', '');--}}
-{{--//            sessionStorage.setItem('activeTab3', 'active');--}}
-{{--//            $('#home-tabb').attr('class', '');--}}
-{{--//            $('#salary-tabb').attr('class', '');--}}
-{{--//            $('#setting-tabb').attr('class', 'active');--}}
-
-{{--//            alert("Кликнули по табу settings");--}}
-{{--//        $('#datatable').attr('id', 'datatable-buttons');--}}
-{{--//        $("#datatable-buttons").load();--}}
-
-        {{--});--}}
-
-
-    {{--});--}}
-
-{{--</script>--}}
-
-
 @endpush
-
 
 

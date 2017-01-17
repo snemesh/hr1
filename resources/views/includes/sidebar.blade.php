@@ -31,6 +31,7 @@
                             <li><a href="/profile">User Profile</a></li>
                             <li><a href="/userlist">User list</a></li>
                             <li><a href="#">Dashboard</a></li>
+                            <li><a href="/settings">Settings</a></li>
                         </ul>
                     </li>
                     {{--<li>--}}

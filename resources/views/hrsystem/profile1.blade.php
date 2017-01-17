@@ -21,7 +21,6 @@
             <div class="clearfix"></div>
         </div>
         <div class="x_content">
-
             <div class="" role="tabpanel" data-example-id="togglable-tabs">
                 <ul id="myTab1" class="nav nav-tabs bar_tabs left" role="tablist">
                     <li role="presentation" class="{!! session()->get('activetab1.tab','active') !!}"><a href="#tab_home-tb" id="home-tabb" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">Home</a>

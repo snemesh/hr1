@@ -115,6 +115,9 @@ class UserListController extends Controller
         if($updatedUser->group_id!=$value) {
             $updatedUser->group_id = $value;
         }
+        // set class='activetab2.tab active' for activeted tab
+
+
 
         if($updatedUser->save())
             return Response()->json(['status'=>1]);
@@ -127,19 +130,30 @@ class UserListController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function massDelete(Request $myId) {
+    public function massDelete(Request $request) {
 
-        $ids = $myId->all();
+        $ids = $request->all();
         //dump($ids);
 
         Salarylog::destroy($ids);
         // redirect or whatever...
 
+        if($request->isMethod('delete')) {
+            $request->session()->flash('activetab1.tab', '');
+            $request->session()->flash('activetab2.tab', 'active');
+            $request->session()->flash('activetab3.tab', '');
+
+            $request->session()->flash('activetab1.page', 'tab-pane fade');
+            $request->session()->flash('activetab2.page', 'tab-pane fade active in');
+            $request->session()->flash('activetab3.page', 'tab-pane fade');
+        }
+
+
         //Salarylog::find($ids->all())->delete();
         //$ids_to_delete = array_map(function($item){ return $item[0]; }, $ids);
 
         //Salarylog::find($myId->all())->delete();
-
+        return back();
     }
 
     public function create()

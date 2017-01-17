@@ -37,23 +37,6 @@
                                         ['placeholder' => 'Pick your group','class'=>'form-control']) !!}
                                 </div>
                             </div>
-
-                            <div id="_token" class="hidden" data-token="{{ csrf_token() }}"></div>
-                            <p id="text" class="pUpdate"
-                               data-type="text"
-                               data-pk='97'
-                               data-ajax--url="/editdata"
-                               data-url="editdata"
-                               data-title="Comments">{!! $user->comments !!}</p>
-
-                            {{--<a id="text" class="pUpdate" data-token="{{ csrf_token() }}" data-pk="97">200</a>--}}
-                            {{--<br>--}}
-                            {{--{!! link_to('/editdata', 'Test link', ['id'=>'text','class'=>'pUpdate','data-pk'=>97], $secure = null)  !!}--}}
-
-                            {{--{!! link_to('editdata', $user->name, ['id'=>'text','class'=>'pUpdate', 'data-url'=>'/editdata', 'data-pk'=>$user->id] )  !!}--}}
-
-                            {{--<a id="text" class="pUpdate" data-token="{!! csrf_token() !!}" data-pk="97" data-url="/editdata">User(97)</a>--}}
-
                         </div>
                     </div>
                     <div class="ln_solid"></div>
