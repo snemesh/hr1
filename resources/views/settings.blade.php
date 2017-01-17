@@ -360,7 +360,7 @@
 
 
 
-    $(document).on('click', '#delete', function () { //prepare list for bulk delete
+    $(document).on('click', '#deletePosition', function () { //prepare list for bulk delete
         var PositionId = [];
         var MyRows = $('table#tblPosition').find('.checked'); //searching elements with class=checked
         for (var i = 0; i < MyRows.length; i++){
@@ -388,9 +388,9 @@
     });
 
 
-    $(document).on('click', '#delete', function () { //prepare list for bulk delete
+    $(document).on('click', '#deleteGroup', function () { //prepare list for bulk delete
         var GroupId = [];
-        var MyRows = $('table#tblGroup').find('.checked'); //searching elements with class=checked
+        var MyRows = $('table#tblGroup .checked'); //searching elements with class=checked
         for (var i = 0; i < MyRows.length; i++){
             GroupId.push($(MyRows[i]).find('.record').attr('id')); //add 'id' of the found element to the array myId
         }
@@ -407,7 +407,7 @@
             }
         })
             .done(function( response ) {
-                console.log("Success!!!");
+                console.log("Success delliting of the group!!!");
             })
             .fail(function() {
                 console.log("Error!!!");

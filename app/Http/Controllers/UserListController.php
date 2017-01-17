@@ -132,11 +132,9 @@ class UserListController extends Controller
      */
     public function massDelete(Request $request) {
 
-        $ids = $request->all();
-        //dump($ids);
-
+        $ids = $request->users_ids;
         Salarylog::destroy($ids);
-        // redirect or whatever...
+
 
         if($request->isMethod('delete')) {
             $request->session()->flash('activetab1.tab', '');
@@ -148,12 +146,7 @@ class UserListController extends Controller
             $request->session()->flash('activetab3.page', 'tab-pane fade');
         }
 
-
-        //Salarylog::find($ids->all())->delete();
-        //$ids_to_delete = array_map(function($item){ return $item[0]; }, $ids);
-
-        //Salarylog::find($myId->all())->delete();
-        return back();
+        return($ids);
     }
 
     public function create()

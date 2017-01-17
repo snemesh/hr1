@@ -186,14 +186,12 @@
     });
 
 
-    $(document).on('click', '#delete', function () {
+    $(document).on('click', '#deleteSlaryLog', function () {
 
         var myId = [];
 
-        var MyRows = $('table#tblExport').find('.checked');
+        var MyRows = $('table#tblExport .checked');
         for (var i = 0; i < MyRows.length; i++){
-            //alert($(MyRows[i]).find('td:eq('+1+')').html());
-                //console.log($(MyRows[i]).find('.record').attr('id'));
                 myId.push($(MyRows[i]).find('.record').attr('id'));
             }
         console.log(myId);
