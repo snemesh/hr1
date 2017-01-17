@@ -23,11 +23,11 @@
             <li><i class="fa fa-briefcase user-profile-icon"></i>
                 <a id="position" class="pUpdate position"
                    data-type="select"
-                   data-prepend='{!! $listOfPositions[$user->position_id] !!}'
+                   data-prepend='{!! isset($user->userposition->positionname)? $user->userposition->positionname:"Please chose" !!}'
                    data-source="{{$listOfPositionsOBJ }}"
                    data-pk='{!! $user->id !!}'
                    data-url="{{URL::to("/")}}/editposition"
-                   data-title="Please choose new position"> {!! $listOfPositions[$user->position_id] !!}</a>
+                   data-title="Please choose new position"> {!! isset($user->userposition->positionname)? $user->userposition->positionname:"not set" !!}</a>
 
             </li>
 

@@ -5,7 +5,8 @@
 <input name="resivedid" hidden="hidden" value={{$user->id}}>
 <tr class="even pointer" id="newline">
     <td class="a-center ">
-        <button class="btn btn-danger">+</button>
+        {{--<button class="btn-mini">+</button>--}}
+        <button type="submit" class="btn-small btn-danger btn" style="">+</button>
     </td>
     <td>
         {!! Form::text('salary',$user->salary,['placeholder' => 'Enter your salary', 'class'=>'form-control', 'required'=>'required' ]) !!}
@@ -20,7 +21,7 @@
                 <div class="controls">
                     <div class="col-md-11 xdisplay_inputx form-group has-feedback">
                         {{--<input value="{!! $SalaryLog->updated_at !!}" type="text" class="form-control has-feedback-left" id="single_cal4" placeholder="Enter date" aria-describedby="inputSuccess2Status4">--}}
-                        {!! Form::text('updated_at',$user->updated_at,['placeholder' => 'Enter date', 'class'=>'form-control has-feedback-left', 'required'=>'required', 'id' => 'single_cal4','aria-describedby'=>'inputSuccess2Status4' ]) !!}
+                        {!! Form::text('updated_at', $user->updated_at,['placeholder' => 'Enter date', 'class'=>'form-control has-feedback-left', 'required'=>'required', 'id' => 'single_cal4','aria-describedby'=>'inputSuccess2Status4' ]) !!}
                         <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
                         <span id="inputSuccess2Status4" class="sr-only">(success)</span>
                     </div>

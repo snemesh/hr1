@@ -13,7 +13,7 @@
                data-title="Please put new position">
                 {!! $listOfPosition->positionname !!}</a>
         </td>
-        <td>{!! $listOfPosition->updated_at !!}</td>
+        <td>{!! date('d-m-Y', strtotime($listOfPosition->updated_at)) !!}</td>
     </tr>
 @endforeach
 

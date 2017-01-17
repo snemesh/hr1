@@ -329,51 +329,51 @@
     });
 
 
+//    $(document).on('click', '#delete', function () { //prepare list for bulk delete
+//        var myId = [];
+//        var MyRows = $('table#tblExport').find('.checked'); //searching elements with class=checked
+//        for (var i = 0; i < MyRows.length; i++){
+//            myId.push($(MyRows[i]).find('.record').attr('id')); //add 'id' of the found element to the array myId
+//        }
+//        console.log(myId);
+//        var token = $("#_token").data("token");
+//
+//        $.ajax({
+//            url: '/mass_delete',
+//            type: 'DELETE',
+//            data: {
+//                "users_ids": myId,
+//                "_method": 'DELETE',
+//                "_token": token
+//            }
+//        })
+//            .done(function( response ) {
+//                console.log("Success!!!");
+//            })
+//            .fail(function() {
+//                console.log("Error!!!");
+//            })
+//        location.reload();
+//    });
+
+
+
+
+
     $(document).on('click', '#delete', function () { //prepare list for bulk delete
-        var myId = [];
-        var MyRows = $('table#tblExport').find('.checked'); //searching elements with class=checked
-        for (var i = 0; i < MyRows.length; i++){
-            myId.push($(MyRows[i]).find('.record').attr('id')); //add 'id' of the found element to the array myId
-        }
-        console.log(myId);
-        var token = $("#_token").data("token");
-
-        $.ajax({
-            url: '/mass_delete',
-            type: 'DELETE',
-            data: {
-                "users_ids": myId,
-                "_method": 'DELETE',
-                "_token": token
-            }
-        })
-            .done(function( response ) {
-                console.log("Success!!!");
-            })
-            .fail(function() {
-                console.log("Error!!!");
-            })
-        location.reload();
-    });
-
-
-
-
-
-    $(document).on('click', '#delete', function () { //prepare list for bulk delete
-        var myId = [];
+        var PositionId = [];
         var MyRows = $('table#tblPosition').find('.checked'); //searching elements with class=checked
         for (var i = 0; i < MyRows.length; i++){
-            myId.push($(MyRows[i]).find('.record').attr('id')); //add 'id' of the found element to the array myId
+            PositionId.push($(MyRows[i]).find('.record').attr('id')); //add 'id' of the found element to the array myId
         }
-        console.log(myId);
+        console.log(PositionId);
         var token = $("#_token").data("token");
 
         $.ajax({
-            url: '/mass_delete',
+            url: '/mass_delete_positions',
             type: 'DELETE',
             data: {
-                "users_ids": myId,
+                "position_ids": PositionId,
                 "_method": 'DELETE',
                 "_token": token
             }
@@ -383,7 +383,7 @@
             })
             .fail(function() {
                 console.log("Error!!!");
-            })
+            });
         location.reload();
     });
 

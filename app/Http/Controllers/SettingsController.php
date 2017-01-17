@@ -119,7 +119,24 @@ class SettingsController extends Controller
         return view('settings')
             ->with('listOfPositionsOBJ', $listOfPositionsOBJ)
             ->with('listOfPositions',$listOfPositions);
-          ;
+
+    }
+    public function addPosition(Request $request){
+        $this->validate($request,[
+            'position'=> 'string|max:50',
+        ]);
+
+        $newPosition = new Position();
+        $newPosition->positionname = $request->position;
+        $newPosition->save();
+        return(redirect('/settings'));
+    }
+
+    public function balkDelete(Request $request){
+        $ids = $request->position_ids;
+
+        Position::destroy($ids);
+        return($ids);
     }
 
 }

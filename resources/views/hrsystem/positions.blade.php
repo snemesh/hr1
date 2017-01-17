@@ -1,7 +1,8 @@
-<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+<div id="_token" class="hidden" data-token="{{ csrf_token() }}"></div>
+<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
     <div class="x_panel">
         <div class="x_title">
-            <h2>Table design <small>Custom design</small></h2>
+            <h2>List of company Positions<small>Custom design</small></h2>
             <ul class="nav navbar-right panel_toolbox">
                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
                 <li class="dropdown">
@@ -18,7 +19,7 @@
         <div class="x_content">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="col-lg-8"><p>To Add new record to the databese please press <code>button " + "</code></p></div>
+                    <div class="col-lg-8"><p>Press <code>button "+"</code> to add new record</p></div>
                 </div>
             </div>
             <div class="table-responsive">
@@ -37,6 +38,21 @@
                             </th>
                         </tr>
                     </thead>
+
+
+                    {!! Form::open(['route' => 'addposition']) !!}
+                    <tr>
+                        <th>
+
+                        </th>
+                        <th colspan="1">
+                            {!! Form::text('position', '',['placeholder' => 'new position', 'class'=>'form-control', 'required'=>'required' ]) !!}
+                        </th>
+                        <th>
+                            <button type="submit" class="btn-danger btn" style="">Add new</button>
+                        </th>
+                    </tr>
+                    {!! Form::token() . Form::close() !!}
                     <tbody>
                         @include('hrsystem.positiontable')
                     </tbody>
