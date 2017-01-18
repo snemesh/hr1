@@ -32,19 +32,6 @@ class ProfileController extends Controller
     }
 
 
-//    public function showProfile(Request $request)
-//    {
-//        //
-//
-//        $user = Auth::user();
-//        $listOfPositions = Position::query()->pluck('positionname','id')->toArray();
-//        $listOfGroup = Group::query()->pluck('groupname','id')->toArray();
-////        var_dump($user);
-////        var_dump($listOfPositions);
-//
-//        return view('profile',['user'=>$user, 'listOfGroup'=>$listOfGroup, 'listOfPositions'=>$listOfPositions]);
-//    }
-
 
     public function showUserProfile(Request $request)
     {
@@ -55,8 +42,6 @@ class ProfileController extends Controller
 
         $listOfPositions = Position::query()->pluck('positionname','id')->toArray();
         $listOfGroup = Group::query()->pluck('groupname','id')->toArray();
-//        var_dump($user);
-//        var_dump($listOfPositions);
 
         return view('profile',['user'=>$user, 'listOfGroup'=>$listOfGroup, 'listOfPositions'=>$listOfPositions]);
     }
@@ -69,12 +54,6 @@ class ProfileController extends Controller
             'resivedid' => 'required',
 
         ]);
-//        echo 'Position =' .$request->Position;
-//        echo "<br>";
-//        echo 'Group = '.$request->Group;
-//        echo "<br>";
-//        echo 'param = '.$request->resivedid;
-
 
         $curentUser=User::find($request->resivedid);
         $updatedUser = User::find($curentUser->id);
@@ -103,10 +82,6 @@ class ProfileController extends Controller
         //
     }
 
-    public function getResizeImage()
-    {
-        return view('profile');
-    }
 
     public function postResizeImage(Request $request)
     {
@@ -203,11 +178,6 @@ class ProfileController extends Controller
 
         if($request->isMethod('post')){
 
-//            $request->session()->flush('activetab1.tab');
-//            $request->session()->flush('activetab2.tab');
-//            $request->session()->flush('activetab3.tab');
-
-
 
             $request->session()->flash('activetab1.tab','active');
             $request->session()->flash('activetab2.tab','');
@@ -293,7 +263,7 @@ class ProfileController extends Controller
         //$userGroup = $curUser->usergroup->groupname;
         //dump($userPosition);
 
-        $mySalaryLogs=User::find($user->id)->salarylog;
+        //$mySalaryLogs=User::find($user->id)->salarylog;
         $mySalaryLogs=DB::table('salarylog')->where('user_id',$user->id)->orderBy('updated_at', 'desc')->get();
 
         return view('profile1')->with('bt1' , $bt1)
@@ -586,13 +556,6 @@ class ProfileController extends Controller
         else
             return Response()->json(['status'=>0]);
 
-
-        //        return response()->json([
-//            'status' => '1'
-//        ]);
-
-//        $data = $request->all();
-//        dump($data);
     }
 
 

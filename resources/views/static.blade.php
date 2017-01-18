@@ -13,7 +13,7 @@
     <!-- page content -->
     <div class="right_col" role="main">
         <div id="_token" class="hidden" data-token="{{ csrf_token() }}"></div>
-        @include('hrsystem.profile1')
+        @include('hrsystem.Profile.profile1')
     </div>
     <!-- /page content -->
 

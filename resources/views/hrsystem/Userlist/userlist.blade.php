@@ -24,7 +24,7 @@
                   <div class="x_content">
                       <table id="datatable" class="table table-striped table-bordered">
 
-                          @include('hrsystem/bodytable')
+                          @include('hrsystem.Userlist.bodytable')
 
                       </table>
                   </div>

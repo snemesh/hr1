@@ -33,17 +33,17 @@
                 <div id="myTabContent2" class="tab-content">
                     <div role="tabpanel" class="{!! session()->get('activetab1.page','tab-pane fade active in') !!}" id="tab_home-tb" aria-labelledby="home-tab">
 
-                        @include('hrsystem.mainprofile')
+                        @include('hrsystem.Profile.mainprofile')
 
                     </div>
                     <div role="tabpanel" class="{!! session()->get('activetab2.page','tab-pane fade') !!}" id="salary-tb" aria-labelledby="profile-tab">
 
-                        @include('hrsystem.salary1')
+                        @include('hrsystem.Profile.salary1')
 
                     </div>
                     <div role="tabpanel" class="{!! session()->get('activetab3.page','tab-pane fade') !!}" id="settings-tb" aria-labelledby="profile-tab">
 
-                        @include('hrsystem.setting')
+                        @include('hrsystem.Profile.setting')
 
                     </div>
                 </div>

@@ -34,7 +34,7 @@
 
     <!-- page content -->
     <div class="right_col" role="main">
-        @include('hrsystem.userlist')
+        @include('hrsystem.Userlist.userlist')
     </div>
     <!-- /page content -->
 

@@ -32,6 +32,7 @@
                             <li><a href="/userlist">User list</a></li>
                             <li><a href="#">Dashboard</a></li>
                             <li><a href="/settings">Settings</a></li>
+                            <li><a href="/skills">Skills</a></li>
                         </ul>
                     </li>
                     {{--<li>--}}

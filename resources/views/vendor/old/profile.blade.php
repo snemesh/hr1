@@ -12,7 +12,7 @@
 
     <!-- page content -->
     <div class="right_col" role="main">
-        @include('hrsystem.profile1')
+        @include('hrsystem.Profile.profile1')
     </div>
     <!-- /page content -->
 

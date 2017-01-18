@@ -47,7 +47,7 @@
                     </thead>
 
                     <tbody>
-                    @include('hrsystem.salarytable')
+                        @include('hrsystem.Profile.salarytable')
                     </tbody>
                 </table>
             </div>

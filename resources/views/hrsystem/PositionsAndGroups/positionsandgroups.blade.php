@@ -55,7 +55,7 @@
                         </tr>
                         {!! Form::token() . Form::close() !!}
                         <tbody>
-                            @include('hrsystem.positiontable')
+                            @include('hrsystem.PositionsAndGroups.positiontable')
                         </tbody>
                     </table>
                 </div>
@@ -122,7 +122,7 @@
                         </tr>
                         {!! Form::token() . Form::close() !!}
                         <tbody>
-                            @include('hrsystem.grouptable')
+                            @include('hrsystem.PositionsAndGroups.grouptable')
                         </tbody>
                     </table>
                 </div>

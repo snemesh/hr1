@@ -29,7 +29,7 @@
     <!-- page content -->
     <div class="right_col" role="main">
         <div id="_token" class="hidden" data-token="{{ csrf_token() }}"></div>
-        @include('hrsystem.PositionsAndGroups.positionsandgroups')
+        @include('hrsystem.Skills.commonskills')
     </div>
     <!-- /page content -->
 
@@ -360,62 +360,44 @@
 
 
 
-    $(document).on('click', '#deletePosition', function () { //prepare list for bulk delete
-        var PositionId = [];
-        var MyRows = $('table#tblPosition').find('.checked'); //searching elements with class=checked
+    $(document).on('click', '#deleteSkills', function () { //prepare list for bulk delete
+        var SkillID = [];
+        var MyRows = $('table#tblSkills').find('.checked'); //searching elements with class=checked
         for (var i = 0; i < MyRows.length; i++){
-            PositionId.push($(MyRows[i]).find('.record').attr('id')); //add 'id' of the found element to the array myId
+            SkillID.push($(MyRows[i]).find('.record').attr('id')); //add 'id' of the found element to the array myId
+            alert(SkillID);
         }
-        console.log(PositionId);
-        var token = $("#_token").data("token");
-
-        $.ajax({
-            url: '/mass_delete_positions',
-            type: 'DELETE',
-            data: {
-                "position_ids": PositionId,
-                "_method": 'DELETE',
-                "_token": token
-            }
-        })
-            .done(function( response ) {
-                console.log("Success!!!");
-                location.reload();
-            })
-            .fail(function() {
-                console.log("Error!!!");
-            });
-
-    });
 
 
-    $(document).on('click', '#deleteGroup', function () { //prepare list for bulk delete
         var GroupId = [];
         var MyRows = $('table#tblGroup .checked'); //searching elements with class=checked
         for (var i = 0; i < MyRows.length; i++){
             GroupId.push($(MyRows[i]).find('.record').attr('id')); //add 'id' of the found element to the array myId
         }
-        console.log(GroupId);
+
+
+        console.log(SkillID);
         var token = $("#_token").data("token");
 
         $.ajax({
-            url: '/mass_delete_groups',
+            url: '/bulk_delete_skills',
             type: 'DELETE',
             data: {
-                "group_ids": GroupId,
+                "skill_ids": SkillID,
                 "_method": 'DELETE',
                 "_token": token
             }
         })
             .done(function( response ) {
-                console.log("Success delliting of the group!!!");
+                console.log("Success Deletting!!!");
                 location.reload();
             })
             .fail(function() {
-                console.log("Error!!!");
+                console.log("Error with DELETE!!!");
             });
 
     });
+
 
 
 </script>
