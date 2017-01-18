@@ -380,11 +380,12 @@
         })
             .done(function( response ) {
                 console.log("Success!!!");
+                location.reload();
             })
             .fail(function() {
                 console.log("Error!!!");
             });
-        location.reload();
+
     });
 
 
@@ -408,11 +409,12 @@
         })
             .done(function( response ) {
                 console.log("Success delliting of the group!!!");
+                location.reload();
             })
             .fail(function() {
                 console.log("Error!!!");
             });
-        location.reload();
+
     });
 
 
