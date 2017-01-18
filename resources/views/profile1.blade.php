@@ -211,11 +211,13 @@
         })
             .done(function( response ) {
                 console.log("Success SlaryLog deletting!!!");
+                location.reload();
             })
             .fail(function() {
                 console.log("Problems with Salarylog");
+                alert("Problems with Salarylog");
             });
-        location.reload();
+
     });
 
 
