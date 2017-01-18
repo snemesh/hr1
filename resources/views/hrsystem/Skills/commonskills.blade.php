@@ -27,7 +27,8 @@
                         <thead>
                             <tr class="headings">
                                 <th><input type="checkbox" id="check-all" class="flat"></th>
-                                <th class="column-title">Skill Name</th>
+                                <th class="column-title">Skill name</th>
+                                <th class="column-title" colspan="2">Skill group</th>
                                 <th class="column-title">Updated</th>
 
 
@@ -48,8 +49,12 @@
                                 {!! Form::text('skill', '',['placeholder' => 'add new skill', 'class'=>'form-control', 'required'=>'required' ]) !!}
                             </th>
                             <th>
-                                <button type="submit" class="btn-danger btn" style="">Add new</button>
+                                <button type="submit" class="btn-danger btn" style="">Add Skill</button>
                             </th>
+                            <th>
+                                <span class="info-number" style="">Add Group</span>
+                            </th>
+                            <th></th>
                         </tr>
                         {!! Form::token() . Form::close() !!}
                         <tbody>
