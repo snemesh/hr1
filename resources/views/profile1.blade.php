@@ -192,7 +192,7 @@
 
         var MyRows = $('table#tblExport .checked');
         for (var i = 0; i < MyRows.length; i++){
-                myId.push($(MyRows[i]).find('.record').attr('id'));
+                myId.push(+$(MyRows[i]).find('.record').attr('id'));
             }
         console.log(myId);
 
@@ -215,7 +215,6 @@
             .fail(function() {
                 console.log("Problems with Salarylog");
             });
-        console.log(myId);
         location.reload();
     });
 
