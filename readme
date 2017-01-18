@@ -9,7 +9,3 @@ https://git-scm.com/book/ru/v1/Основы-Git-Работа-с-удалённы
 sudo chown -R snemesh hr1
 
 sudo chown -R www-data hrsystem
-
-php artisan view:clear
-php artisan cache:clear
- php artisan serve
