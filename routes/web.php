@@ -48,7 +48,7 @@ Route::post('editgroup', ['as'=>'editgroup', 'uses'=>'UserListController@editGro
 
 //bulk deleting records
 Route::delete('mass_delete', 'UserListController@massDelete');
-
+Route::delete('/profile/mass_delete', 'UserListController@massDelete');
 
 
 
