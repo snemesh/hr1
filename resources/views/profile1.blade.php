@@ -205,7 +205,7 @@
             type: 'DELETE',
             data: {
                 "users_ids": myId,
-                //"_method": 'DELETE',
+                "_method": 'DELETE',
                 "_token": token
             }
         })
