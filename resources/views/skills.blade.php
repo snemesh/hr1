@@ -308,23 +308,16 @@
             params._token = $("#_token").data("token");
             return params;
         };
-        $("#text").editable({
-            url:'{{URL::to("/")}}/editdata'
-        });
 
-        $(".position").editable({
+
+        $(".skill").editable({
             placement:'right'
         });
 
-        $("#position").editable({
+        $(".skillgroup").editable({
             placement:'right'
         });
 
-
-        $(".group").editable({
-            placement:'right'
-
-        });
 
     });
 
@@ -365,7 +358,6 @@
         var MyRows = $('table#tblSkills').find('.checked'); //searching elements with class=checked
         for (var i = 0; i < MyRows.length; i++){
             SkillID.push($(MyRows[i]).find('.record').attr('id')); //add 'id' of the found element to the array myId
-            alert(SkillID);
         }
 
 

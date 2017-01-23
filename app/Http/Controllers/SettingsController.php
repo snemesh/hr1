@@ -150,16 +150,16 @@ class SettingsController extends Controller
 
     }
 
-    public function showGroup(Request $request){
-
-        $listOfGroups=Group::query()->get();
-        $listOfGroupsOBJ=Position::query()->pluck('groupname','id')->toJson();
-
-        return view('settings')
-            ->with('listOfGroupsOBJ', $listOfGroupsOBJ)
-            ->with('listOfGroups',$listOfGroups);
-
-    }
+//    public function showGroup(Request $request){
+//
+//        $listOfGroups=Group::query()->get();
+//        $listOfGroupsOBJ=Position::query()->pluck('groupname','id')->toJson();
+//
+//        return view('settings')
+//            ->with('listOfGroupsOBJ', $listOfGroupsOBJ)
+//            ->with('listOfGroups',$listOfGroups);
+//
+//    }
 
     public function addPosition(Request $request){
         $this->validate($request,[

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Skill;
+use App\SkillGroup;
 use Illuminate\Http\Request;
 
 class SkillController extends Controller
@@ -85,9 +86,12 @@ class SkillController extends Controller
 
     public function showCommonSkillList(){
         $skillLists = Skill::all();
-        //dump($skillLists);
+        $groupListOBJ=SkillGroup::all()->pluck('groupname','id')->toJson();
+        //dump($groupListOBJ);
 
-        return view('skills')->with('skillLists',$skillLists);
+        return view('skills')
+            ->with('skillLists',$skillLists)
+            ->with('groupListOBJ',$groupListOBJ);
     }
 
     public function changeSkillName(Request $request){

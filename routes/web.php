@@ -68,7 +68,7 @@ Route::delete('mass_delete_groups', 'SettingsController@balkDeleteGroups');
 
 //Skill pages
 Route::get('/skills', 'SkillController@showCommonSkillList');
-Route::post('/showskilllist', ['as'=>'showskilllist', 'uses'=>'SkillController@changeSkillName']);
+Route::post('/changeskillname', ['as'=>'showskilllist', 'uses'=>'SkillController@changeSkillName']);
 Route::delete('bulk_delete_skills', 'SkillController@balkDeleteSkills');
 Route::post('addskill', ['as'=>'addskill', 'uses'=>'SkillController@addSkill']);
 
