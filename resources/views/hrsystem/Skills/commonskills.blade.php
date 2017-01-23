@@ -45,16 +45,12 @@
                             <th>
 
                             </th>
-                            <th colspan="1">
+                            <th>
                                 {!! Form::text('skill', '',['placeholder' => 'add new skill', 'class'=>'form-control', 'required'=>'required' ]) !!}
                             </th>
                             <th>
                                 <button type="submit" class="btn-danger btn" style="">Add Skill</button>
                             </th>
-                            <th>
-                                <span class="info-number" style="">Add Group</span>
-                            </th>
-                            <th></th>
                         </tr>
                         {!! Form::token() . Form::close() !!}
                         <tbody>

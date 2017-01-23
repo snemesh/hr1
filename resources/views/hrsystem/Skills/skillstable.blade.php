@@ -25,11 +25,6 @@
                data-title="SET new skill-group">
                 {!! isset($skillList->skillgroup->name)?isset($skillList->skillgroup->name):'Please chose' !!}</a>
         </td>
-        <td>
-            <a id="skillgroup" class="pUpdate skillgroup">
-                <i class="fa-ambulance"></i> New group
-            </a>
-        </td>
         <td>{!! date('d-m-Y', strtotime($skillList->updated_at)) !!}</td>
     </tr>
 @endforeach
