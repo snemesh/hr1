@@ -9,7 +9,7 @@
         <!-- menu profile quick info -->
         <div class="profile">
             <div class="profile_pic">
-                <a href="{{ url('/') }}"><img src="{{(asset(Auth::user()->avatar)) }}"  alt="Avatar of {{ Auth::user()->name }}" class="img-circle profile_img"></a>
+                <a href="{{ url('/') }}"><img src="{{ (null!==Auth::user()->avatar and file_exists(Auth::user()->avatar)) ? asset(Auth::user()->avatar) : asset('img/default.png')  }}"  alt="Avatar of {{ Auth::user()->name }}" class="img-circle profile_img"></a>
             </div>
             <div class="profile_info">
                 <span>Welcome,</span>

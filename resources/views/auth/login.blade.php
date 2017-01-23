@@ -57,7 +57,7 @@
                     <div class="clearfix"></div>
                     
                     <div class="separator">
-                        <p class="change_link">New to site?
+                        <p class="change_link">Do you need new account?
                             <a href="{{ url('/register') }}" class="to_register"> Create Account </a>
                         </p>
                         

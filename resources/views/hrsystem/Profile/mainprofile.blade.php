@@ -1,7 +1,7 @@
 <div align="center" class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
     <br>{!! Form::open(['url' => '/upload','files' => true]) !!}
 
-    <img class="img-responsive avatar-view" src={!! (null!==$user->avatar) ? asset($user->avatar) : asset('img/default.png') !!} alt="Avatar" title="Change the avatar">
+    <img class="img-responsive avatar-view" src={!! (null!==$user->avatar and file_exists($user->avatar)) ? asset($user->avatar) : asset('img/default.png') !!} alt="Avatar" title="Change the avatar">
     <div class="row">
         <br>
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">

@@ -8,7 +8,7 @@
                     {!! Form::open(['route' => 'savesettings']) !!}
                     <div class="row">
                         <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
-                            <img class="img-responsive avatar-view" src={!! (null!==$user->avatar) ? asset($user->avatar) : asset('img/default.png') !!} alt="Avatar" title="Change the avatar">
+                            <img class="img-responsive avatar-view" src={!! (null!==$user->avatar and file_exists($user->avatar)) ? asset($user->avatar) : asset('img/default.png') !!} alt="Avatar" title="Change the avatar">
                         </div>
                         <div class="col-lg-9 col-md-9 col-sm-8 col-xs-12">
                             <div class="form-group">
