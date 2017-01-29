@@ -6,6 +6,7 @@ use App\Group;
 use App\Position;
 use App\Salarylog;
 use App\User;
+use App\UserSkillSet;
 use Illuminate\Support\Facades\DB;
 use Intervention\Image\Facades\Image;
 use Illuminate\Http\Request;
@@ -266,15 +267,24 @@ class ProfileController extends Controller
         //$mySalaryLogs=User::find($user->id)->salarylog;
         $mySalaryLogs=DB::table('salarylog')->where('user_id',$user->id)->orderBy('updated_at', 'desc')->get();
 
-        return view('profile1')->with('bt1' , $bt1)
-            ->with('bt2', $bt2)
-            ->with('user', $user)
-            ->with('listOfPositions', $listOfPositions)
-            ->with('listOfGroup' , $listOfGroup)
-            ->with('salarycomment',$salarycomment)
-            ->with('mySalaryLogs', $mySalaryLogs)
-            ->with('listOfPositionsOBJ',$listOfPositionsOBJ)
-            ->with('listOfGroupsOBJ',$listOfGroupsOBJ);
+
+        $userskills = UserSkillSet::where('user_id',$user->id)->get();
+
+        foreach ($userskills as $userskill) {
+            echo $userskill->user->name;
+        }
+
+
+
+//        return view('profile1')->with('bt1' , $bt1)
+//            ->with('bt2', $bt2)
+//            ->with('user', $user)
+//            ->with('listOfPositions', $listOfPositions)
+//            ->with('listOfGroup' , $listOfGroup)
+//            ->with('salarycomment',$salarycomment)
+//            ->with('mySalaryLogs', $mySalaryLogs)
+//            ->with('listOfPositionsOBJ',$listOfPositionsOBJ)
+//            ->with('listOfGroupsOBJ',$listOfGroupsOBJ);
     }
 
 

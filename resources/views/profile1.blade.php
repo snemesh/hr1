@@ -3,7 +3,7 @@
 @push('stylesheets')
     <!-- iCheck -->
     <link href={!! asset('gentelella/vendors/iCheck/skins/flat/green.css') !!} rel="stylesheet" />
-    <link href={!! asset('gentelella/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css') !!} rel="stylesheet"/>
+    <link href={!! asset('gentelella/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css') !!} rel="stylesheet">
     <!-- jVectorMap -->
     <link href={!! asset('gentelella/production/css/maps/jquery-jvectormap-2.0.3.css') !!} />
 @endpush
@@ -50,7 +50,25 @@
 
 
 
+{{--========================================--}}
 
+{{--<!-- jQuery -->--}}
+{{--<script src={{ asset('gentelella/vendors/jquery/dist/jquery.min.js') }}></script>--}}
+
+
+
+{{--<!-- Bootstrap -->--}}
+{{--<script src={{ asset('gentelella/vendors/bootstrap/dist/js/bootstrap.min.js') }}></script>--}}
+{{--<!-- FastClick -->--}}
+{{--<script src={{ asset('gentelella/vendors/fastclick/lib/fastclick.js') }}></script>--}}
+{{--<!-- NProgress -->--}}
+{{--<script src={{ asset('gentelella/vendors/nprogress/nprogress.js') }}></script>--}}
+{{--<!-- bootstrap-progressbar -->--}}
+{{--<script src={{ asset('gentelella/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js') }}></script>--}}
+
+{{--<!-- Custom Theme Scripts -->--}}
+{{--<script src={{ asset('gentelella/build/js/custom.min.js') }}></script>--}}
+{{--=========================================--}}
 
 
 <!-- PNotify -->

@@ -222,12 +222,12 @@
             SkillID.push($(MyRows[i]).find('.record').attr('id')); //add 'id' of the found element to the array myId
         }
 
-
-        var GroupId = [];
-        var MyRows = $('table#tblGroup .checked'); //searching elements with class=checked
-        for (var i = 0; i < MyRows.length; i++){
-            GroupId.push($(MyRows[i]).find('.record').attr('id')); //add 'id' of the found element to the array myId
-        }
+//
+//        var GroupId = [];
+//        var MyRows = $('table#tblGroup .checked'); //searching elements with class=checked
+//        for (var i = 0; i < MyRows.length; i++){
+//            GroupId.push($(MyRows[i]).find('.record').attr('id')); //add 'id' of the found element to the array myId
+//        }
 
 
         console.log(SkillID);
@@ -253,6 +253,42 @@
     });
 
 // end bulk deleting skills =================================================================================
+
+
+
+// start bulk deleting skillgroups =================================================================================
+
+    $(document).on('click', '#deleteSkillGroup', function () { //prepare list for bulk delete
+        var SkillGroupID = [];
+        var MyRows = $('table#tblSkillGroup').find('.checked'); //searching elements with class=checked
+        for (var i = 0; i < MyRows.length; i++){
+            SkillGroupID.push($(MyRows[i]).find('.record').attr('id')); //add 'id' of the found element to the array myId
+        }
+
+        console.log(SkillGroupID);
+        var token = $("#_token").data("token");
+
+        $.ajax({
+            url: '/bulk_delete_skillgroup',
+            type: 'DELETE',
+            data: {
+                "skillgroup_ids": SkillGroupID,
+                "_method": 'DELETE',
+                "_token": token
+            }
+        })
+            .done(function( response ) {
+                console.log("Success SkillGroup Deletting!!!");
+                location.reload();
+            })
+            .fail(function() {
+                console.log("Error with DELETE!!!");
+            });
+
+    });
+
+    // end bulk deleting skillgroups =================================================================================
+
 
 </script>
 

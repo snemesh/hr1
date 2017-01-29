@@ -13,10 +13,10 @@
 
 //To debuge MySQL querys use these code
 
-//DB::listen(function($query) {
-//
-//    dump($query->sql, $query->bindings);
-//});
+DB::listen(function($query) {
+
+    dump($query->sql, $query->bindings);
+});
 
 Auth::routes();
 
@@ -69,7 +69,12 @@ Route::delete('mass_delete_groups', 'SettingsController@balkDeleteGroups');
 //Skill pages
 Route::get('/skills', 'SkillController@showCommonSkillList');
 Route::post('/changeskillname', ['as'=>'showskilllist', 'uses'=>'SkillController@changeSkillName']);
+Route::post('/changeskillgroupname', ['as'=>'showskilllist', 'uses'=>'SkillController@changeSkillGroupName']);
+
 Route::delete('bulk_delete_skills', 'SkillController@balkDeleteSkills');
+Route::delete('bulk_delete_skillgroup', 'SkillController@bulkDeleteSkillGroup');
+
+
 Route::post('addskill', ['as'=>'addskill', 'uses'=>'SkillController@addSkill']);
 Route::post('addskillgroup', ['as'=>'addskillgroup', 'uses'=>'SkillController@addSkillGroup']);
 

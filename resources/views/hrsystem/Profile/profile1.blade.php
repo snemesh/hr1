@@ -29,6 +29,8 @@
                     </li>
                     <li role="presentation" class="{!! session()->get('activetab3.tab','') !!}"><a href="#settings-tb" role="tab" id="setting-tabb" data-toggle="tab" aria-controls="settings" aria-expanded="false">Setting</a>
                     </li>
+                    <li role="presentation" class="{!! session()->get('activetab4.tab','') !!}"><a href="#skillset-tb" role="tab" id="skillset-tabb" data-toggle="tab" aria-controls="skillset" aria-expanded="false">Skill SET</a>
+                    </li>
                 </ul>
                 <div id="myTabContent2" class="tab-content">
                     <div role="tabpanel" class="{!! session()->get('activetab1.page','tab-pane fade active in') !!}" id="tab_home-tb" aria-labelledby="home-tab">
@@ -44,6 +46,11 @@
                     <div role="tabpanel" class="{!! session()->get('activetab3.page','tab-pane fade') !!}" id="settings-tb" aria-labelledby="profile-tab">
 
                         @include('hrsystem.Profile.setting')
+
+                    </div>
+                    <div role="tabpanel" class="{!! session()->get('activetab4.page','tab-pane fade') !!}" id="skillset-tb" aria-labelledby="profile-tab">
+
+                        @include('hrsystem.Profile.skillset')
 
                     </div>
                 </div>

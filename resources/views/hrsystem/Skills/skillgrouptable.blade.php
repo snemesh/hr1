@@ -9,8 +9,8 @@
             <a id="skill" class="pUpdate skill"
                data-type="text"
                data-pk='{!! $skillGroupList->id !!}'
-               data-url="/changeskillname"
-               data-title="Please put new skill">
+               data-url="/changeskillgroupname"
+               data-title="Please edit skill group">
                 {!! $skillGroupList->groupname !!}</a>
         </td>
 

@@ -78,7 +78,7 @@
                     {!! Form::text('skillgroup', '',['placeholder' => 'add new group', 'class'=>'form-control', 'required'=>'required' ]) !!}
                 </div>
                 <div class="col-lg-4">
-                    <button type="submit" class="btn-danger btn" style="">Add Skill</button>
+                    <button type="submit" class="btn-danger btn" style="">Add Group</button>
                 </div>
                 {!! Form::token() . Form::close() !!}
             </div>
@@ -109,7 +109,7 @@
                     </div>
                 </div>
                 <div class="table-responsive">
-                    <table class="table table-striped jambo_table bulk_action" id="tblSkills">
+                    <table class="table table-striped jambo_table bulk_action" id="tblSkillGroup">
                         <thead>
                         <tr class="headings">
                             <th><input type="checkbox" id="check-all" class="flat"></th>
@@ -117,7 +117,7 @@
                             <th class="column-title">Updated</th>
                             <th class="bulk-actions dropdown" colspan="7">
                                 <a class="antoo" style="color:#fff; font-weight:500;" href="#">Bulk Actions  ( <span class="action-cnt "></span> )
-                                    <i class="glyphicon glyphicon-trash"></i> <span class="btn-mini" type="submit" id="deleteSkills"> Delete</span></a>
+                                    <i class="glyphicon glyphicon-trash"></i> <span class="btn-mini" type="submit" id="deleteSkillGroup"> Delete</span></a>
                             </th>
                         </tr>
                         </thead>
