@@ -86,111 +86,6 @@
 <script src={{ asset('gentelella/production/js/datepicker/daterangepicker.js') }}></script>
 
 
-
-
-
-
-
-<script>
-    $(document).ready(function() {
-
-        $.fn.editable.defaults.params = function (params) {
-            params._token = $("#_token").data("token");
-            return params;
-        };
-        $(".salary").editable({
-            //mode:'inline'
-            placement:'top',
-            success: function(response, newValue) {
-                if(!response.success) return response.msg;
-            }
-
-        });
-
-        $(".position").editable({
-            //mode:'inline'
-            placement:'top',
-            //source:'array',
-            //prepend:'array'
-
-        });
-        $(".group").editable({
-            //mode:'inline'
-            placement:'top',
-            //source:'array',
-            //prepend:'array'
-
-        });
-
-
-        var handleDataTableButtons = function() {
-            if ($("#datatable-buttons").length) {
-                $("#datatable-buttons").DataTable({
-                    dom: "Bfrtip",
-                    buttons: [
-                        {
-                            extend: "copy",
-                            className: "btn-sm"
-                        },
-                        {
-                            extend: "csv",
-                            className: "btn-sm"
-                        },
-                        {
-                            extend: "excel",
-                            className: "btn-sm"
-                        },
-                        {
-                            extend: "pdfHtml5",
-                            className: "btn-sm"
-                        },
-                        {
-                            extend: "print",
-                            className: "btn-sm"
-                        },
-                    ],
-                    pageLength: 15, //https://datatables.net/reference/option/pageLength - здесь решение как менять параметры
-                    responsive: true
-                });
-            }
-        };
-
-        TableManageButtons = function() {
-            "use strict";
-            return {
-                init: function() {
-                    handleDataTableButtons();
-
-                }
-            };
-        }();
-
-        $('#datatable').dataTable();
-        $('#datatable-keytable').DataTable({
-            keys: true
-        });
-
-        $('#datatable-responsive').DataTable();
-
-        $('#datatable-scroller').DataTable({
-            ajax: "js/datatables/json/scroller-demo.json",
-            deferRender: true,
-            scrollY: 380,
-            scrollCollapse: true,
-            scroller: true
-        });
-
-        var table = $('#datatable-fixed-header').DataTable({
-            fixedHeader: true
-        });
-
-        TableManageButtons.init();
-
-    });
-
-
-</script>
-
 {{--=========================================================================================================--}}
 
 
@@ -233,27 +128,6 @@
 <!-- Custom Notification -->
 <script>
     $(document).ready(function() {
-
-        $.fn.editable.defaults.params = function (params) {
-            params._token = $("#_token").data("token");
-            return params;
-        };
-
-        $(document).on('click', '#addrecord', function(e) {
-            $('#newline').removeAttr('hidden');
-        });
-
-
-
-        $("#salary").editable({
-            //mode:'inline'
-            placement:'top',
-            success: function(response, newValue) {
-                //location.reload();
-                if(!response.success) return response.msg;
-            }
-
-        });
 
         var cnt = 10;
 
@@ -303,6 +177,14 @@
 
 
 
+
+
+
+
+
+
+// start popup editing for the table List of company skills
+
     $(document).ready(function() {
         $.fn.editable.defaults.params = function (params) {
             params._token = $("#_token").data("token");
@@ -320,38 +202,18 @@
 
 
     });
-
-
-//    $(document).on('click', '#delete', function () { //prepare list for bulk delete
-//        var myId = [];
-//        var MyRows = $('table#tblExport').find('.checked'); //searching elements with class=checked
-//        for (var i = 0; i < MyRows.length; i++){
-//            myId.push($(MyRows[i]).find('.record').attr('id')); //add 'id' of the found element to the array myId
-//        }
-//        console.log(myId);
-//        var token = $("#_token").data("token");
-//
-//        $.ajax({
-//            url: '/mass_delete',
-//            type: 'DELETE',
-//            data: {
-//                "users_ids": myId,
-//                "_method": 'DELETE',
-//                "_token": token
-//            }
-//        })
-//            .done(function( response ) {
-//                console.log("Success!!!");
-//            })
-//            .fail(function() {
-//                console.log("Error!!!");
-//            })
-//        location.reload();
-//    });
+// end popup editing for the table List of company skills
 
 
 
 
+
+
+
+
+
+
+// start bulk deleting skills =================================================================================
 
     $(document).on('click', '#deleteSkills', function () { //prepare list for bulk delete
         var SkillID = [];
@@ -390,7 +252,7 @@
 
     });
 
-
+// end bulk deleting skills =================================================================================
 
 </script>
 

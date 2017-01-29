@@ -17,10 +17,7 @@ class CreateUserSkillSetPlanedsTable extends Migration
             $table->increments('id');
 
             $table->integer('skill_id')->nullable();
-            //$table->foreign('skill_id')->references('id')->on('skill');
-
             $table->integer('user_id')->nullable();
-            //$table->foreign('user_id')->references('id')->on('users');
 
 
             $table->double('skill_current_rate')->nullable();

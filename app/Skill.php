@@ -12,7 +12,7 @@ class Skill extends Model
 
     public function skillgroup(){
 
-        return $this->hasMany('App\SkillGroup','id','skillgrouop_id');
+        return $this->hasOne('App\SkillGroup', 'id', 'skillgroup_id');
     }
 
 }

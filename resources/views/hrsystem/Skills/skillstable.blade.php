@@ -16,14 +16,23 @@
         <td>
             <a id="skillgroup" class="pUpdate skillgroup"
                data-type="select"
+               {{--то что отражаем в заголовке попапа--}}
+               data-prepend='{!! isset($skillList->skillgroup->groupname) ? $skillList->skillgroup->groupname:'Please chose group' !!}'
 
-               data-prepend='{!! isset($skillList->skillgroup->name) ? $skillList->skillgroup->name:'Please chose' !!}'
+               {{--список ресурсов--}}
                data-source="{{$groupListOBJ }}"
 
-               data-pk='{!! $skillList->group_id !!}'
+               {{--присваемваем ИД по которому будет обновлять данные--}}
+               data-pk='{!! $skillList->id !!}'
+
+               {{--маршрут--}}
                data-url="/changeskillgroup"
+
+               {{--список выпадающего меню--}}
                data-title="SET new skill-group">
-                {!! isset($skillList->skillgroup->name)?isset($skillList->skillgroup->name):'Please chose' !!}</a>
+                {{--то что отражаем в строке перед тем как выпадает попап--}}
+                {!! isset($skillList->skillgroup->groupname)? ($skillList->skillgroup->groupname):'Please chose' !!}</a>
+
         </td>
         <td>{!! date('d-m-Y', strtotime($skillList->updated_at)) !!}</td>
     </tr>

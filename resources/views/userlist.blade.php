@@ -126,14 +126,14 @@
 
         $(".position").editable({
             //mode:'inline'
-            placement:'top',
+            placement:'top'
             //source:'array',
             //prepend:'array'
 
         });
         $(".group").editable({
             //mode:'inline'
-            placement:'top',
+            placement:'top'
             //source:'array',
             //prepend:'array'
 

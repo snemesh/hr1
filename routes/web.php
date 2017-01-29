@@ -71,6 +71,8 @@ Route::get('/skills', 'SkillController@showCommonSkillList');
 Route::post('/changeskillname', ['as'=>'showskilllist', 'uses'=>'SkillController@changeSkillName']);
 Route::delete('bulk_delete_skills', 'SkillController@balkDeleteSkills');
 Route::post('addskill', ['as'=>'addskill', 'uses'=>'SkillController@addSkill']);
+Route::post('addskillgroup', ['as'=>'addskillgroup', 'uses'=>'SkillController@addSkillGroup']);
 
 
+Route::post('/changeskillgroup', ['as'=>'changeskillgroup', 'uses'=>'SkillController@ChangeSkillGroup']);
 

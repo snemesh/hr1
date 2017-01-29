@@ -87,11 +87,12 @@ class SkillController extends Controller
     public function showCommonSkillList(){
         $skillLists = Skill::all();
         $groupListOBJ=SkillGroup::all()->pluck('groupname','id')->toJson();
-        //dump($groupListOBJ);
+        $skillGroupLists = SkillGroup::all();
 
         return view('skills')
             ->with('skillLists',$skillLists)
-            ->with('groupListOBJ',$groupListOBJ);
+            ->with('groupListOBJ',$groupListOBJ)
+            ->with('skillGroupLists',$skillGroupLists);
     }
 
     public function changeSkillName(Request $request){
@@ -134,4 +135,42 @@ class SkillController extends Controller
         $newSkill->save();
         return(redirect('/skills'));
     }
+
+    public function ChangeSkillGroup(Request $request){
+
+        $this->validate($request,[
+            'pk'=> 'int',
+            'value'=> 'required|int',
+        ]);
+
+        $id= $request->get('pk');
+
+        $value = $request->get('value');
+
+        $updatedSkill=Skill::find($id);
+
+        if($updatedSkill->skillgroup_id!=$value) {
+            $updatedSkill->skillgroup_id = $value;
+        }
+
+        if($updatedSkill->save())
+            return Response()->json(['status'=>1]);
+        else
+            return Response()->json(['status'=>0]);
+
+    }
+
+    public function addSkillGroup(Request $request){
+
+        $this->validate($request,[
+            'skillgroup'=> 'string|max:50',
+        ]);
+
+        $newSkillGroup = new SkillGroup();
+        $newSkillGroup->groupname = $request->skillgroup;
+        $newSkillGroup->save();
+        return(redirect('/skills'));
+
+    }
+
 }
