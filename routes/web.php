@@ -13,10 +13,10 @@
 
 //To debuge MySQL querys use these code
 
-DB::listen(function($query) {
-
-    dump($query->sql, $query->bindings);
-});
+//DB::listen(function($query) {
+//
+//    dump($query->sql, $query->bindings);
+//});
 
 Auth::routes();
 

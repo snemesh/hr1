@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Group;
 use App\Position;
 use App\Salarylog;
+use App\SkillGroup;
 use App\User;
 use App\UserSkillSet;
 use Illuminate\Support\Facades\DB;
@@ -269,22 +270,36 @@ class ProfileController extends Controller
 
 
         $userskills = UserSkillSet::where('user_id',$user->id)->get();
-
-        foreach ($userskills as $userskill) {
-            echo $userskill->user->name;
-        }
+        $userskills->load('user');
+        $userskills->load('skill');
 
 
 
-//        return view('profile1')->with('bt1' , $bt1)
-//            ->with('bt2', $bt2)
-//            ->with('user', $user)
-//            ->with('listOfPositions', $listOfPositions)
-//            ->with('listOfGroup' , $listOfGroup)
-//            ->with('salarycomment',$salarycomment)
-//            ->with('mySalaryLogs', $mySalaryLogs)
-//            ->with('listOfPositionsOBJ',$listOfPositionsOBJ)
-//            ->with('listOfGroupsOBJ',$listOfGroupsOBJ);
+
+        $SkillGroup = SkillGroup::all();
+
+
+
+
+//          $grp=SkillGroup::has('skill')->get();
+//          dump($grp);
+//          foreach ($grp as $gp){
+//              foreach( $gp->skill as $gpskill){
+//                  echo $gpskill->name."<br>";
+//              };
+//          }
+
+        return view('profile1')->with('bt1' , $bt1)
+            ->with('bt2', $bt2)
+            ->with('user', $user)
+            ->with('listOfPositions', $listOfPositions)
+            ->with('listOfGroup' , $listOfGroup)
+            ->with('salarycomment',$salarycomment)
+            ->with('mySalaryLogs', $mySalaryLogs)
+            ->with('listOfPositionsOBJ',$listOfPositionsOBJ)
+            ->with('listOfGroupsOBJ',$listOfGroupsOBJ)
+            ->with('userskills',$userskills)
+            ->with('SkillGroup',$SkillGroup);
     }
 
 

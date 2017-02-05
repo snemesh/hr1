@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\Skill;
 use App\User;
+use App\SkillGroup;
 
 class UserSkillSet extends Model
 {
@@ -20,4 +21,6 @@ class UserSkillSet extends Model
     {
         return $this->hasOne('App\User','id','user_id');
     }
+
+
 }
