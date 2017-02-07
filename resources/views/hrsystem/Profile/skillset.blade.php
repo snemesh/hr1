@@ -4,6 +4,7 @@
             <div class="panel-heading"><h3 class="panel-title" align="center">User's Skill-SET</h3></div>
             <div class="panel-body">
                 @include('hrsystem.profile.skillsettbl')
+                {{--test file--}}
             </div>
         </div>
     </div>
